@@ -22,6 +22,6 @@ repos:
         args: [--pretty, --ignore-missing-imports, --disallow-untyped-calls, --disallow-untyped-defs,
                --disallow-incomplete-defs, --check-untyped-defs, --disallow-untyped-decorators]
 -   repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
-    sha: ''  # Use the sha / tag you want to point at
+    rev: ''  # Use the sha / tag you want to point at
     hooks:
     -   id: pep257
