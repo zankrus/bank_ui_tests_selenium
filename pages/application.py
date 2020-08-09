@@ -9,4 +9,4 @@ class Application:
         driver_path = ChromeDriverManager().install()
         self.wd = webdriver.Chrome(driver_path)
         self.base_url = base_url
-        self.login_page = LoginPage()
+        self.login_page = LoginPage(self)
