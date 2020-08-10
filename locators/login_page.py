@@ -9,3 +9,4 @@ class LoginPageLocators:
     forgot_password = (By.XPATH, "//a[@class='chevron']")
     reset_password_dialogue = (By.XPATH, "//div[@id='reset-password-dialog']")
     forgot_password_text = (By.XPATH, "//h3")
+    switch_lang = (By.XPATH, "//a[@class='chevron locale inline-block']")

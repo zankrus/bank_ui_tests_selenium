@@ -58,3 +58,9 @@ class LoginPage:
 
     def forgot_password_text(self):
         return self.app.wd.find_element(*LoginPageLocators.forgot_password_text).text
+
+    def switch_lang_button(self):
+        return self.app.wd.find_element(*LoginPageLocators.switch_lang)
+
+    def click_switch_lang(self):
+        return self.switch_lang_button().click()
