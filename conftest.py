@@ -5,7 +5,7 @@ from pages.application import Application
 
 @pytest.fixture(scope="session")
 def app(request):
-    base_url = "https://idemo.bspb.ru/"
+    base_url = "https://idemo.bspb.ru"
     fixture = Application(base_url)
     fixture.wd.implicitly_wait(10)
     fixture.wd.maximize_window()
@@ -18,5 +18,6 @@ def auhorized_user(app):
     app.open_login_page()
     app.login_page.click_enter_button()
     app.login_page.click_enter_button()
+    app.open_main_page()
     yield app
     app.wd.quit()

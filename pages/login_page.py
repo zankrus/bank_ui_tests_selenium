@@ -1,4 +1,9 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from locators.login_page import LoginPageLocators
+from selenium.webdriver.support import expected_conditions as EC
+from common.LoginPageConstants import LoginPageConstants as const
 
 
 class LoginPage:
@@ -35,3 +40,21 @@ class LoginPage:
 
     def is_displayed_alert_invalid_username_or_password(self):
         return self.invalid_username_alert().is_displayed()
+
+    def restore_access_button(self):
+        return self.app.wd.find_element(*LoginPageLocators.forgot_password)
+
+    def click_on_restore_access_button(self):
+        return self.restore_access_button().click()
+
+    def reset_password_dialogue(self):
+        return self.app.wd.find_element(*LoginPageLocators.reset_password_dialogue)
+
+    def is_displayed_rest_password_dialogue(self):
+        wait = WebDriverWait(self.app.wd, 10)
+        wait.until(EC.text_to_be_present_in_element(LoginPageLocators.forgot_password_text,
+                                                    const.forget_password_text))
+        return self.reset_password_dialogue().is_enabled()
+
+    def forgot_password_text(self):
+        return self.app.wd.find_element(*LoginPageLocators.forgot_password_text).text
