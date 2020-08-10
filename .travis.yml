@@ -2,7 +2,7 @@ language: python
 python: 3.6
 
 env:
-  - LANG=ru_RU.UTF-8, LC_ALL=ru_RU.UTF-8
+  - LANG=ru_RU.UTF-8 - LC_ALL=ru_RU.UTF-8
 
 
 
