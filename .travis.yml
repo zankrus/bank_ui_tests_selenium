@@ -9,8 +9,10 @@ env:
 addons:
   chrome: stable
 
+before_install:
+  - sudo apt-get install language-pack-ru
+
 install:
-  - apt-get install language-pack-ru
   - pip install -r requirements.txt
 
 script:
