@@ -12,6 +12,6 @@ class LoginPageConstants:
                    ".bspb.ru%2Flogin%2Fprefetch&force_" \
                    "new_session=true"
     wrong_login_url = "https://idemo.bspb.ru/auth/login"
-    title = 'Интернет банк - Банк Санкт-Петербург'
+    title = 'Bank Saint-Petersburg'
     wrong_password_or_login_alert = 'Invalid login credentials (2 attempts left)'
     forget_password_text = 'Forgot username or password?'
