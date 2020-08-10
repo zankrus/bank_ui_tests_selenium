@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 from common.loggin import setup
@@ -12,11 +13,13 @@ logger = logging.getLogger()
 
 
 class Application:
-    def __init__(self, base_url):
+    def __init__(self, base_url, headless):
         setup('INFO')
         logger.setLevel('INFO')
         driver_path = ChromeDriverManager().install()
-        self.wd = webdriver.Chrome(driver_path)
+        options = Options()
+        options.headless = headless
+        self.wd = webdriver.Chrome(driver_path, options=options)
         self.base_url = base_url
         self.login_page = LoginPage(self)
         self.main_page = MainPage(self)

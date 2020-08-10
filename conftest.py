@@ -5,8 +5,9 @@ from pages.application import Application
 
 @pytest.fixture(scope="session")
 def app(request):
-    base_url = "https://idemo.bspb.ru"
-    fixture = Application(base_url)
+    base_url = request.config.getoption("--base-url")
+    headless = request.config.getoption("--headless")
+    fixture = Application(base_url, headless)
     fixture.wd.implicitly_wait(10)
     fixture.wd.maximize_window()
     yield fixture
@@ -21,3 +22,18 @@ def auhorized_user(app):
     app.open_main_page()
     yield app
     app.wd.quit()
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--base-url",
+        action="store",
+        default="https://idemo.bspb.ru",
+        help="enter base_url",
+    ),
+    parser.addoption(
+        "--headless",
+        action="store",
+        default=Frue,
+        help="launching browser without gui",
+    )
