@@ -34,6 +34,6 @@ def pytest_addoption(parser):
     parser.addoption(
         "--headless",
         action="store",
-        default=Frue,
+        default=False,
         help="launching browser without gui",
     )
