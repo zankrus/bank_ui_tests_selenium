@@ -9,7 +9,7 @@ class DepositsPageLocators:
     end_date = (By.XPATH, "//input[@id='endDate']")
     date_31_august = (By.XPATH, "//td[@class='day'][contains(text(),'31')]")
     amouth = (By.ID, "amount")
-    next_button = (By.ID, 'submit-button')
+    next_button = (By.XPATH, "//input[@name='condition.newDepositConditions']")
     agree_condition = (By.NAME, "condition.newDepositConditions")
     confirm_button = (By.ID, 'confirm')
     succes_deposit = (By.XPATH, "//div[@class='alert alert-success']")
