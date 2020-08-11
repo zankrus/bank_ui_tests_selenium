@@ -16,4 +16,6 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pytest --headless='True'
+  - pytest tests\test_login.py --headless='True'
+  - pytest tests\test_deposits.py --headless='True'
+
