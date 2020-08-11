@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 from common.loggin import setup
+from pages.deposits_page import DepositsPage
 from pages.login_page import LoginPage
 
 import logging
@@ -24,6 +25,7 @@ class Application:
         self.base_url = base_url
         self.login_page = LoginPage(self)
         self.main_page = MainPage(self)
+        self.deposit_page = DepositsPage(self)
 
     def open_login_page(self):
         logger.info('Open Login Page')
