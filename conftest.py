@@ -15,7 +15,7 @@ def app(request):
 
 
 @pytest.fixture(scope="module")
-def authorized_user(app):
+def authorized_user(app, request):
     app.open_login_page()
     app.login_page.click_enter_button()
     app.login_page.click_enter_button()
