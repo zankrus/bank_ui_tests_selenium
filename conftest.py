@@ -26,9 +26,6 @@ def authorized_user(app, request):
     fixture.login_page.click_enter_button()
     fixture.login_page.click_enter_button()
     fixture.open_main_page()
-    # if fixture.wd.title == const.title_eng:
-    #     fixture.main_page.change_lang()
-    #     assert app.wd.title == const.title_rus
     yield fixture
     fixture.teardown()
 

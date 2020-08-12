@@ -6,8 +6,7 @@ class LoginPageConstants:
         (11111, 23232323),
         ("roben", "roben"),
         ("роберт", 1234),
-        ("", ""),
-        ("demo", "demo"),
+        ("", "")
     ]
     main_page_url = "https://idemo.bspb.ru/welcome"
     redirect_url = (
