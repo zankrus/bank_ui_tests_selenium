@@ -10,3 +10,9 @@ class MainPage:
 
     def click_on_deposits(self):
         return self.deposits_button().click()
+
+    def change_lang_button(self):
+        return self.app.wd.find_element(*MainPageLocators.change_lang)
+
+    def change_lang(self):
+        return self.change_lang().click()

@@ -1,5 +1,5 @@
 import pytest
-
+from common.LoginPageConstants import LoginPageConstants as const
 from pages.application import Application
 
 
@@ -20,6 +20,9 @@ def authorized_user(app):
     app.login_page.click_enter_button()
     app.login_page.click_enter_button()
     app.open_main_page()
+    if app.wd.title == const.title_eng :
+        app.main_page.change_lang()
+        assert app.wd.title == const.title_rus
     yield app
     app.wd.quit()
 
