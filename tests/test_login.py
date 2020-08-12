@@ -1,14 +1,21 @@
 """Файл с тестами страницы авторизации"""
 import time
 
+import allure
+
 from common.LoginPageConstants import LoginPageConstants as const
 
 import pytest
 
 
+
+@allure.suite("Авторизация")
 class TestLoginPage:
+    @allure.title("тест на успешную авторизацию")
+    @allure.tag("positive")
     def test_login(self, app):
-        """Тест на успешную авторизацию пользователя
+        """
+        Тест на успешную авторизацию пользователя
         Шаги:
             1. Перейти по ссылке https://idemo.bspb.ru/auth
             ОР:  'Интернет банк - Банк Санкт-Петербург в шапке, произошел редирект
@@ -26,9 +33,12 @@ class TestLoginPage:
         app.login_page.click_enter_button()
         assert const.main_page_url in app.wd.current_url
 
+    @allure.title("тест на негативную авторизацию")
+    @allure.tag("negative")
     @pytest.mark.parametrize("login, password", const.auth_data)
     def test_negative_login(self, app, login, password):
-        """Тест на неуспешную авторизацию
+        """
+        Тест на неуспешную авторизацию
                Шаги:
                1. Перейти по ссылке https://idemo.bspb.ru/auth
                ОР:  'Интернет банк - Банк Санкт-Петербург в шапке, произошел редирект
@@ -49,6 +59,8 @@ class TestLoginPage:
         assert const.wrong_password_or_login_alert in app.login_page.text_of_ivalid_username_alert()
         assert const.wrong_login_url in app.wd.current_url
 
+    @allure.title("тест на появления окна восстановления пароля")
+    @allure.tag("positive")
     def test_forgot_login_password(self, app):
         """
         Тест на появление окна "Забыли логин или пароль"
@@ -64,6 +76,3 @@ class TestLoginPage:
         app.login_page.click_on_restore_access_button()
         assert app.login_page.is_displayed_rest_password_dialogue()
         assert const.forget_password_text == app.login_page.forgot_password_text()
-
-
-

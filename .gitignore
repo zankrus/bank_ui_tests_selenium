@@ -5,6 +5,8 @@ __pycache__/
 .mypy_cache
 # C extensions
 *.so
+.allure
+allure
 env
 .env
 .idea

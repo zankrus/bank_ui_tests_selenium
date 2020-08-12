@@ -1,8 +1,14 @@
 import time
+
+import allure
+
 from common.DepostPageConstants import DepositPageConstants as const
 
 
+@allure.suite("Депозиты")
 class TestsDeposit:
+    @allure.title("Тест на успешное открытие депозита")
+    @allure.tag("positive")
     def test_create_deposits(self, authorized_user):
         authorized_user.main_page.click_on_deposits()
         authorized_user.deposit_page.click_open_deposit()
@@ -16,4 +22,3 @@ class TestsDeposit:
         authorized_user.deposit_page.click_agree_condition()
         authorized_user.deposit_page.click_cofrim_button()
         assert authorized_user.deposit_page.is_displayed_success_logo()
-
