@@ -14,17 +14,18 @@ def app(request):
     fixture.wd.quit()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def authorized_user(app, request):
-    app.open_login_page()
-    app.login_page.click_enter_button()
-    app.login_page.click_enter_button()
-    app.open_main_page()
-    if app.wd.title == const.title_eng :
-        app.main_page.change_lang()
+    fixture = app
+    fixture.open_login_page()
+    fixture.login_page.click_enter_button()
+    fixture.login_page.click_enter_button()
+    fixture.open_main_page()
+    if fixture.wd.title == const.title_eng :
+        fixture.main_page.change_lang()
         assert app.wd.title == const.title_rus
-    yield app
-    app.wd.quit()
+    yield fixture
+    fixture.wd.quit()
 
 
 def pytest_addoption(parser):

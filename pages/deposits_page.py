@@ -1,4 +1,8 @@
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from locators.deposits_page import DepositsPageLocators
+from common.DepostPageConstants import DepositPageConstants as const
 
 class DepositsPage:
     def __init__(self, app):
@@ -65,3 +69,12 @@ class DepositsPage:
 
     def is_displayed_success_logo(self):
         return self.success_logo().is_displayed()
+
+    def percent_of_deposit(self):
+        return self.app.wd.find_element(*DepositsPageLocators.percent_of_deposit)
+
+    def text_of_percent_of_deposit(self):
+        wait = WebDriverWait(self.app.wd, 10)
+        wait.until(EC.text_to_be_present_in_element(DepositsPageLocators.percent_of_deposit,
+                                                    const.deposit_percents))
+        return self.percent_of_deposit().text
