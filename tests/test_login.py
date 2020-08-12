@@ -1,6 +1,4 @@
 """Файл с тестами страницы авторизации"""
-import time
-
 import allure
 
 from common.LoginPageConstants import LoginPageConstants as const

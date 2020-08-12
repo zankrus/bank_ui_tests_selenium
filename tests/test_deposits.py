@@ -1,3 +1,5 @@
+import pytest
+
 import allure
 
 from common.DepostPageConstants import DepositPageConstants as const
@@ -24,9 +26,16 @@ class TestsDeposit:
         authorized_user.deposit_page.click_cofrim_button()
         assert authorized_user.deposit_page.is_displayed_success_logo()
 
-    def test_invalid_amouth(self,authorized_user):
+    @allure.title("тест на негативную сумму депозита")
+    @allure.tag("negative")
+    @pytest.mark.parametrize("test_data", const.test_data_for_amouth)
+    def test_invalid_amouth(self,authorized_user, test_data):
         authorized_user.main_page.click_on_deposits()
         authorized_user.deposit_page.click_open_deposit()
         authorized_user.deposit_page.choose_usd()
         authorized_user.deposit_page.choose_free_term()
         authorized_user.deposit_page.choose_demo_2_deposit()
+        authorized_user.deposit_page.input_to_amouth_field(test_data)
+        authorized_user.deposit_page.choose_end_date()
+        authorized_user.deposit_page.click_next_button()
+        assert authorized_user.deposit_page.invalid_amouth_alert_is_visible()

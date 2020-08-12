@@ -9,7 +9,7 @@ from common.DepostPageConstants import DepositPageConstants as const
 class DepositsPage:
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 10)
+        self.wait = WebDriverWait(self.app.wd, 2)
 
     def open_deposit(self):
         return self.app.wd.find_element(*DepositsPageLocators.open_deposit)
@@ -95,3 +95,11 @@ class DepositsPage:
             )
         )
         return self.percent_of_deposit().text
+
+    @allure.step("Проверка появления предупреждени о не валидной сумме")
+    def invalid_amouth(self):
+        self.wait.until(EC.visibility_of_element_located(DepositsPageLocators.invalid_amouth_alert))
+        return self.app.wd.find_element(*DepositsPageLocators.invalid_amouth_alert)
+
+    def invalid_amouth_alert_is_visible(self):
+        return self.invalid_amouth().is_displayed()
