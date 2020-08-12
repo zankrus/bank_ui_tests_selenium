@@ -8,7 +8,6 @@ from common.LoginPageConstants import LoginPageConstants as const
 import pytest
 
 
-
 @allure.suite("Авторизация")
 class TestLoginPage:
     @allure.title("тест на успешную авторизацию")
@@ -25,9 +24,9 @@ class TestLoginPage:
             URL - https://idemo.bspb.ru/welcome
         """
         app.open_login_page()
-        if app.wd.title == const.title_eng:
-            app.login_page.click_switch_lang()
-            assert app.wd.title == const.title_rus
+        # if app.wd.title == const.title_eng:
+        #     app.login_page.click_switch_lang()
+        #     assert app.wd.title == const.title_rus
         assert const.redirect_url in app.wd.current_url
         app.login_page.click_enter_button()
         app.login_page.click_enter_button()
@@ -49,14 +48,17 @@ class TestLoginPage:
                URL - https://idemo.bspb.ru/auth/login
          """
         app.open_login_page()
-        if app.wd.title == const.title_eng:
-            app.login_page.click_switch_lang()
-            assert app.wd.title == const.title_rus
+        # if app.wd.title == const.title_eng:
+        #     app.login_page.click_switch_lang()
+        #     assert app.wd.title == const.title_rus
         app.login_page.input_username(login)
         app.login_page.input_password(password)
         app.login_page.click_enter_button()
         assert app.login_page.is_displayed_alert_invalid_username_or_password()
-        assert const.wrong_password_or_login_alert in app.login_page.text_of_ivalid_username_alert()
+        assert (
+            const.wrong_password_or_login_alert
+            in app.login_page.text_of_ivalid_username_alert()
+        )
         assert const.wrong_login_url in app.wd.current_url
 
     @allure.title("тест на появления окна восстановления пароля")
@@ -70,9 +72,9 @@ class TestLoginPage:
             ОР : Появилось окно с информацией по восстановлению логина или пароля
         """
         app.open_login_page()
-        if app.wd.title == const.title_eng:
-            app.login_page.click_switch_lang()
-            assert app.wd.title == const.title_rus
+        # if app.wd.title == const.title_eng:
+        #     app.login_page.click_switch_lang()
+        #     assert app.wd.title == const.title_rus
         app.login_page.click_on_restore_access_button()
         assert app.login_page.is_displayed_rest_password_dialogue()
         assert const.forget_password_text == app.login_page.forgot_password_text()
