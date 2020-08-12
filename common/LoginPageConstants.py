@@ -3,7 +3,7 @@
 
 class LoginPageConstants:
     auth_data = [
-        (11111, 23232323),
+        (111, 2322),
         ("roben", "roben"),
         ("роберт", 1234),
         ("", "")
