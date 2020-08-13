@@ -26,7 +26,6 @@ urllib3~=1.25.9
 webdriver-manager==3.2.1
 yarg==0.1.9
 zipp==3.1.0
-
 pip~=19.2.3
 wheel~=0.33.6
 Faker~=4.0.3

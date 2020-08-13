@@ -30,3 +30,10 @@ class MainPage:
     @allure.step("Нажать на кнопку Карты")
     def click_on_cards_button(self) -> Any:
         return self.cards_button().click()
+
+    def logout_button(self) -> WebElement:
+        return self.app.wd.find_element(*MainPageLocators.logout_button)
+
+    def click_on_logout_button(self) -> Any:
+        return self.logout_button().click()
+

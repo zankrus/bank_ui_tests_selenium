@@ -6,3 +6,5 @@ class MainPageLocators:
     change_lang = (By.XPATH,
                    "//button[@class='btn btn-text btn-toggle active']")
     cards = (By.ID, 'cards')
+
+    logout_button = (By.CLASS_NAME, "icon-close")

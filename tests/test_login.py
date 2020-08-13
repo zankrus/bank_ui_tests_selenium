@@ -1,4 +1,6 @@
 """Файл с тестами страницы авторизации"""
+import time
+
 import allure
 
 from common.LoginPageConstants import LoginPageConstants as const
@@ -20,13 +22,17 @@ class TestLoginPage:
             3. СМС код автозаполнился - нажать "Войти"
             ОР: Оказались на главной странице личного кабинета
             URL - https://idemo.bspb.ru/welcome
+            4. Выйти из аккаунта
+            ОР: Оказались на странице логина
         """
         app.open_login_page()
         assert const.redirect_url in app.wd.current_url
         app.login_page.click_enter_button()
         app.login_page.click_enter_button()
         assert const.main_page_url in app.wd.current_url
-
+        app.open_main_page()
+        app.main_page.click_on_logout_button()
+        time.sleep(2)
     @allure.title("тест на негативную авторизацию")
     @allure.tag("negative")
     @pytest.mark.parametrize("login, password", const.auth_data)
