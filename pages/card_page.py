@@ -97,25 +97,14 @@ class CardPage:
         try:
             return self.app.wd.find_element(*CardPageLocators.confirm_button)
         except NoSuchWindowException:
-            time.sleep(4)
+            self.wait.until(EC.visibility_of(self.app.wd.find_element(*CardPageLocators.confirm_button)))
+            # time.sleep(4)
             return self.app.wd.find_element(*CardPageLocators.confirm_button)
-
-    # @allure.step("Нажатие кнопки подтвердить")
-    # def confirm_button_click(self) -> Any:
-    #     try:
-    #         self.confirm_button().click()
-    #         return self.app.wd.switch_to.default_content()
-    #     except NoSuchWindowException:
-    #         time.sleep(4)
-    #         self.confirm_button().click()
-    #         return self.app.wd.switch_to.default_content()
-
 
     @allure.step("Нажатие кнопки подтвердить")
     def confirm_button_click(self) -> Any:
         self.confirm_button().click()
         return self.app.wd.switch_to.default_content()
-
 
     def success_alert(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.success_alert)
