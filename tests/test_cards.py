@@ -25,6 +25,7 @@ class TestCards:
         :param authorized_user: фикстура авторизованного юзера
         :return: None
         """
+        authorized_user.open_main_page()
         authorized_user.main_page.click_on_cards_button()
         authorized_user.card_page.click_on_other_bank_card()
         authorized_user.card_page.add_other_bank_card(authorized_user.fake_data)

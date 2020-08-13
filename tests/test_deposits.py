@@ -41,6 +41,7 @@ class TestsDeposit:
         :param authorized_user: фикстура авторизованного юзера
         :return: None
         """
+        authorized_user.open_main_page()
         authorized_user.main_page.click_on_deposits()
         authorized_user.deposit_page.click_open_deposit()
         authorized_user.deposit_page.choose_usd()
@@ -61,6 +62,7 @@ class TestsDeposit:
     @allure.tag("negative")
     @pytest.mark.parametrize("test_data", const.test_data_for_amouth)
     def test_invalid_amouth(self, authorized_user, test_data):
+        authorized_user.open_main_page()
         authorized_user.main_page.click_on_deposits()
         authorized_user.deposit_page.click_open_deposit()
         authorized_user.deposit_page.choose_usd()
