@@ -15,7 +15,7 @@ from locators.card_page import CardPageLocators
 class CardPage:
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 5)
+        self.wait = WebDriverWait(self.app.wd, 10)
 
     def other_bank_card(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.other_bank_card)
@@ -94,23 +94,26 @@ class CardPage:
 
     def confirm_button(self) -> WebElement:
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(CardPageLocators.iframe))
-        return self.app.wd.find_element(*CardPageLocators.confirm_button)
-
-    @allure.step("Нажатие кнопки подтвердить")
-    def confirm_button_click(self) -> Any:
         try:
-            self.confirm_button().click()
-            return self.app.wd.switch_to.default_content()
+            return self.app.wd.find_element(*CardPageLocators.confirm_button)
         except NoSuchWindowException:
-            time.sleep(4)
-            self.confirm_button().click()
-            return self.app.wd.switch_to.default_content()
-
+            return self.app.wd.find_element(*CardPageLocators.confirm_button)
 
     # @allure.step("Нажатие кнопки подтвердить")
     # def confirm_button_click(self) -> Any:
-    #     self.confirm_button().click()
-    #     return self.app.wd.switch_to.default_content()
+    #     try:
+    #         self.confirm_button().click()
+    #         return self.app.wd.switch_to.default_content()
+    #     except NoSuchWindowException:
+    #         time.sleep(4)
+    #         self.confirm_button().click()
+    #         return self.app.wd.switch_to.default_content()
+
+
+    @allure.step("Нажатие кнопки подтвердить")
+    def confirm_button_click(self) -> Any:
+        self.confirm_button().click()
+        return self.app.wd.switch_to.default_content()
 
 
     def success_alert(self) -> WebElement:
