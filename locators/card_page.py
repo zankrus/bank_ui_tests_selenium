@@ -9,3 +9,7 @@ class CardPageLocators:
     other_bank_card_expire_year = (By.XPATH, "//input[@placeholder='ГГГГ']")
     other_bank_card_csv = (By.XPATH, "//input[@name='card.cvv']")
     other_bank_card_save_button = (By.XPATH, "//input[@id='bind-card']")
+    card_holder_preview = (By.XPATH, "//span[@id='card-holder-name']")
+    card_validity = (By.XPATH, "//span[@id='card-validity']")
+    iframe = (By.XPATH, "//iframe[@id='confirmation-frame']")
+    confirm_button = (By.XPATH, "//button[@id='confirm']")

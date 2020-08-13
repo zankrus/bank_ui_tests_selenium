@@ -16,11 +16,11 @@ class TestsDeposit:
         authorized_user.deposit_page.choose_free_term()
         authorized_user.deposit_page.choose_demo_2_deposit()
         authorized_user.deposit_page.input_to_amouth_field(const.amouth)
-        authorized_user.deposit_page.choose_end_date()
         assert (
             authorized_user.deposit_page.text_of_percent_of_deposit()
-            == const.deposit_percents
+            in const.deposit_percents
         )
+        authorized_user.deposit_page.choose_end_date()
         authorized_user.deposit_page.click_next_button()
         authorized_user.deposit_page.click_agree_condition()
         authorized_user.deposit_page.click_cofrim_button()

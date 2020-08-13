@@ -10,7 +10,7 @@ class DepositsPageLocators:
         "//a[@class='btn btn-mini btn-primary place-deposit']",
     )
     end_date = (By.XPATH, "//input[@id='endDate']")
-    date_31_august = (By.XPATH, "//td[@class='day'][contains(text(),'31')]")
+    date_31_august = (By.XPATH, "//td[@class='day new'][contains(text(),'6')]")
     amouth = (By.ID, "amount")
     next_button = (By.XPATH, "//button[@id='submit-button']")
     agree_condition = (By.NAME, "condition.newDepositConditions")
@@ -18,4 +18,5 @@ class DepositsPageLocators:
     succes_deposit = (By.XPATH, "//div[@class='alert alert-success']")
     percent_of_deposit = (By.ID, "estimated-interest")
     invalid_amouth_alert = (By.XPATH, "//div[@class='tooltip fade right in']")
+
 

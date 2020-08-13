@@ -9,6 +9,7 @@ class FakeData:
         self.credit_card_expire_mouth = credit_card_expire_mouth
         self.credit_card_expire_year = credit_card_expire_year
         self.csv = csv
+        self.credit_card_expire_date = str(self.credit_card_expire_mouth) + "/" + str(self.credit_card_expire_year)
 
     @staticmethod
     def lets_random_bitchas():
