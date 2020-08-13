@@ -97,6 +97,7 @@ class CardPage:
         try:
             return self.app.wd.find_element(*CardPageLocators.confirm_button)
         except NoSuchWindowException:
+            time.sleep(4)
             return self.app.wd.find_element(*CardPageLocators.confirm_button)
 
     # @allure.step("Нажатие кнопки подтвердить")
