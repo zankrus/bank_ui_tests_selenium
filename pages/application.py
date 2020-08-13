@@ -1,3 +1,5 @@
+import logging
+
 import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -9,9 +11,6 @@ from common.loggin import setup
 from pages.card_page import CardPage
 from pages.deposits_page import DepositsPage
 from pages.login_page import LoginPage
-
-import logging
-
 from pages.main_page import MainPage
 
 logger = logging.getLogger()

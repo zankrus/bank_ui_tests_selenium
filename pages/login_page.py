@@ -1,9 +1,9 @@
 import allure
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from locators.login_page import LoginPageLocators
-from selenium.webdriver.support import expected_conditions as EC
 from common.LoginPageConstants import LoginPageConstants as const
+from locators.login_page import LoginPageLocators
 
 
 class LoginPage:

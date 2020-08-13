@@ -1,12 +1,10 @@
 """Модуль для хранения страницы Карты."""
-import time
 from typing import Any
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.support.wait import WebDriverWait
 
 from common.Utilities import FakeData
 from locators.card_page import CardPageLocators
@@ -101,3 +99,8 @@ class CardPage:
         self.confirm_button().click()
         return self.app.wd.switch_to.default_content()
 
+    def success_alert(self) -> WebElement:
+        return self.app.wd.find_element(*CardPageLocators.success_alert)
+
+    def success_alert_is_displayed(self):
+        return self.success_alert().is_displayed()

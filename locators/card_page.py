@@ -13,3 +13,4 @@ class CardPageLocators:
     card_validity = (By.XPATH, "//span[@id='card-validity']")
     iframe = (By.XPATH, "//iframe[@id='confirmation-frame']")
     confirm_button = (By.XPATH, "//button[@id='confirm']")
+    success_alert = (By.XPATH, "//div[@class='alert alert-success']")

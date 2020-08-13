@@ -4,7 +4,6 @@ from datetime import datetime
 import allure
 import pytest
 
-from common.LoginPageConstants import LoginPageConstants as const
 from pages.application import Application
 
 
@@ -68,9 +67,9 @@ def pytest_runtest_makereport(item, call):
             cp_file_name = add_name + ".png"
             # only add additional html on failure
             html = (
-                "<div><img src="
-                + cp_file_name
-                + ' alt="screenshot" style="width:304px;height:228px;" '
+                    "<div><img src="
+                    + cp_file_name
+                    + ' alt="screenshot" style="width:304px;height:228px;" '
             )
             extra.append(pytest_html.extras.html(html))
         report.extra = extra

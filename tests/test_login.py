@@ -2,10 +2,9 @@
 import time
 
 import allure
+import pytest
 
 from common.LoginPageConstants import LoginPageConstants as const
-
-import pytest
 
 
 @allure.suite("Авторизация")
@@ -33,6 +32,7 @@ class TestLoginPage:
         app.open_main_page()
         app.main_page.click_on_logout_button()
         time.sleep(2)
+
     @allure.title("тест на негативную авторизацию")
     @allure.tag("negative")
     @pytest.mark.parametrize("login, password", const.auth_data)
@@ -54,8 +54,8 @@ class TestLoginPage:
         app.login_page.click_enter_button()
         assert app.login_page.is_displayed_alert_invalid_username_or_password()
         assert (
-            const.wrong_password_or_login_alert
-            in app.login_page.text_of_ivalid_username_alert()
+                const.wrong_password_or_login_alert
+                in app.login_page.text_of_ivalid_username_alert()
         )
         assert const.wrong_login_url in app.wd.current_url
 

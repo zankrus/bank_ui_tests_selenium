@@ -1,9 +1,9 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
-from locators.deposits_page import DepositsPageLocators
 from common.DepostPageConstants import DepositPageConstants as const
+from locators.deposits_page import DepositsPageLocators
 
 
 class DepositsPage:
@@ -88,7 +88,6 @@ class DepositsPage:
 
     @allure.step("Проверка суммый дохода от депозита")
     def text_of_percent_of_deposit(self):
-
         self.wait.until(
             EC.text_to_be_present_in_element(
                 DepositsPageLocators.percent_of_deposit, const.deposit_percents

@@ -18,5 +18,3 @@ class DepositsPageLocators:
     succes_deposit = (By.XPATH, "//div[@class='alert alert-success']")
     percent_of_deposit = (By.ID, "estimated-interest")
     invalid_amouth_alert = (By.XPATH, "//div[@class='tooltip fade right in']")
-
-
