@@ -92,11 +92,11 @@ class CardPage:
 
     def confirm_button(self) -> WebElement:
         self.wait.until(EC.frame_to_be_available_and_switch_to_it(CardPageLocators.iframe))
-        self.wait.until(EC.element_to_be_clickable(CardPageLocators.confirm_button))
         return self.app.wd.find_element(*CardPageLocators.confirm_button)
 
     @allure.step("Нажатие кнопки подтвердить")
     def confirm_button_click(self) -> Any:
+        self.wait.until(EC.element_to_be_clickable(CardPageLocators.confirm_button))
         self.confirm_button().click()
         return self.app.wd.switch_to.default_content()
 
