@@ -1,7 +1,9 @@
 """Модуль для хранения страницы Карты."""
+import time
 from typing import Any
 
 import allure
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -96,9 +98,14 @@ class CardPage:
 
     @allure.step("Нажатие кнопки подтвердить")
     def confirm_button_click(self) -> Any:
-        self.wait.until(EC.element_to_be_clickable(CardPageLocators.confirm_button))
-        self.confirm_button().click()
-        return self.app.wd.switch_to.default_content()
+        try:
+            self.confirm_button().click()
+            return self.app.wd.switch_to.default_content()
+        except TimeoutException:
+            time.sleep(4)
+            return self.app.wd.switch_to.default_content()
+        finally:
+            raise Exception('Все очень плохо')
 
     def success_alert(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.success_alert)
