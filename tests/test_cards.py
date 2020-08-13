@@ -34,6 +34,5 @@ class TestCards:
         assert authorized_user.card_page.card_holder_preview_text() == authorized_user.fake_data.name
         assert authorized_user.card_page.card_expiring_preview_text() \
                == authorized_user.fake_data.credit_card_expire_date
-        time.sleep(4)
         authorized_user.card_page.confirm_button_click()
         assert authorized_user.card_page.success_alert_is_displayed()

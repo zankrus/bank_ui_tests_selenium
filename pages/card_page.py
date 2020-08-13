@@ -13,7 +13,7 @@ from locators.card_page import CardPageLocators
 class CardPage:
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 3)
+        self.wait = WebDriverWait(self.app.wd, 5)
 
     def other_bank_card(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.other_bank_card)
@@ -102,5 +102,6 @@ class CardPage:
     def success_alert(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.success_alert)
 
+    @allure.step("Проверка отображения сообщения о успехе")
     def success_alert_is_displayed(self):
         return self.success_alert().is_displayed()
