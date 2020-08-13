@@ -3,7 +3,7 @@ import time
 from typing import Any
 
 import allure
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -101,11 +101,17 @@ class CardPage:
         try:
             self.confirm_button().click()
             return self.app.wd.switch_to.default_content()
-        except TimeoutException:
+        except NoSuchWindowException:
             time.sleep(4)
+            self.confirm_button().click()
             return self.app.wd.switch_to.default_content()
-        finally:
-            raise Exception('Все очень плохо')
+
+
+    # @allure.step("Нажатие кнопки подтвердить")
+    # def confirm_button_click(self) -> Any:
+    #     self.confirm_button().click()
+    #     return self.app.wd.switch_to.default_content()
+
 
     def success_alert(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.success_alert)
