@@ -23,7 +23,7 @@ virtualenv <env_name>
 <env_name>\Scripts\activate.bat
 pytest
 ```
-##Allure
+## Allure
 Установка allure
 Для генерации отчетов необходимо установить Scoop через PowerShell https://scoop.sh/
 
