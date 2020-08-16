@@ -31,7 +31,6 @@ class TestLoginPage:
         assert const.main_page_url in app.wd.current_url
         app.open_main_page()
         app.main_page.click_on_logout_button()
-        time.sleep(2)
 
     @allure.title("тест на негативную авторизацию")
     @allure.tag("negative")
