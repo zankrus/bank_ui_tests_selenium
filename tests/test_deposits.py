@@ -47,6 +47,6 @@ class TestsDeposit:
     @allure.title("тест на негативную сумму депозита")
     @allure.tag("negative")
     @pytest.mark.parametrize("test_data", Const.TEST_DATA_FOR_AMOUNT)
-    def test_invalid_amouth(self, authorized_user, test_data):
+    def test_invalid_amount(self, authorized_user, test_data):
         authorized_user.open_free_term_usd_deposit(test_data)
         assert authorized_user.deposit_page.invalid_amount_alert_is_visible()

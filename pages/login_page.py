@@ -2,11 +2,14 @@ import allure
 
 from common.login_page_constants import LoginPageConstants as Const
 from locators.login_page import LoginPageLocators
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class LoginPage:
     def __init__(self, app):
         self.app = app
+        self.wait = WebDriverWait(self.app.wd, 10)
 
     def username_field(self):
         return self.app.wd.find_element(*LoginPageLocators.USERNAME_FIELD)
@@ -56,8 +59,8 @@ class LoginPage:
 
     @allure.step("Проверка отображения диалогового окна о забытии пароля")
     def is_displayed_rest_password_dialogue(self):
-        self.app.wait.until(
-            self.app.ex.text_to_be_present_in_element(
+        self.wait.until(
+            EC.text_to_be_present_in_element(
                 LoginPageLocators.FORGOT_PASSWORD_TEXT, Const.FORGET_PASSWORD_TEXT
             )
         )

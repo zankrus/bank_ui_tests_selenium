@@ -4,6 +4,8 @@ from typing import Any
 import allure
 from selenium.common.exceptions import NoSuchWindowException
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from common.Utilities import FakeData
 from locators.card_page import CardPageLocators
@@ -12,6 +14,7 @@ from locators.card_page import CardPageLocators
 class CardPage:
     def __init__(self, app):
         self.app = app
+        self.wait = WebDriverWait(self.app.wd, 10)
 
     def other_bank_card(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.OTHER_BANK_CARD)
@@ -25,7 +28,7 @@ class CardPage:
 
     @allure.step('Вводим имя владельца карты другого банка')
     def other_bank_input_cardholder_input_name(self, keys: str) -> Any:
-        self.app.wait.until(self.app.ex.element_to_be_clickable(CardPageLocators.OTHER_BANK_CARDHOLDER_INPUT))
+        self.wait.until(EC.element_to_be_clickable(CardPageLocators.OTHER_BANK_CARDHOLDER_INPUT))
         return self.other_bank_input_cardholder_field().send_keys(keys)
 
     def other_bank_card_number_field(self) -> WebElement:
@@ -33,7 +36,7 @@ class CardPage:
 
     @allure.step('Вводим номер карты другого банка')
     def other_bank_card_number_field_input_number(self, keys: str) -> Any:
-        self.app.wait.until(self.app.ex.element_to_be_clickable(CardPageLocators.OTHER_BANK_CARD_NUMBER))
+        self.wait.until(EC.element_to_be_clickable(CardPageLocators.OTHER_BANK_CARD_NUMBER))
         return self.other_bank_card_number_field().send_keys(keys)
 
     def other_bank_card_expire_mouth_field(self) -> WebElement:
@@ -75,12 +78,11 @@ class CardPage:
         self.other_bank_card_save_button_click()
 
     def card_holder_preview(self) -> WebElement:
-        # self.app.wait.until(self.app.ex.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
         return self.app.wd.find_element(*CardPageLocators.CARD_HOLDER_PREVIEW)
 
     @allure.step("Проверка владельца карты на превью")
     def card_holder_preview_text(self) -> str:
-        self.app.wait.until(self.app.ex.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
+        self.wait.until(EC.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
         return self.card_holder_preview().text
 
     def card_expiring_preview(self) -> WebElement:
@@ -91,12 +93,12 @@ class CardPage:
         return self.card_expiring_preview().text
 
     def confirm_button(self) -> WebElement:
-        self.app.wait.until(self.app.ex.frame_to_be_available_and_switch_to_it(CardPageLocators.IFRAME))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it(CardPageLocators.IFRAME))
 
         try:
             return self.app.wd.find_element(*CardPageLocators.CONFIRM_BUTTON)
         except NoSuchWindowException:
-            self.app.wait.until(self.app.ex.visibility_of(self.app.wd.find_element(*CardPageLocators.CONFIRM_BUTTON)))
+            self.wait.until(EC.visibility_of(self.app.wd.find_element(*CardPageLocators.CONFIRM_BUTTON)))
             return self.app.wd.find_element(*CardPageLocators.CONFIRM_BUTTON)
 
     @allure.step("Нажатие кнопки подтвердить")

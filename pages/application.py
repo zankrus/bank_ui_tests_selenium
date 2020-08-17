@@ -5,8 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 
 from common.Utilities import FakeData
 from common.loggin import setup
@@ -33,8 +31,6 @@ class Application:
             options.add_argument("--headless")
         self.wd = webdriver.Chrome(driver_path, options=options)
         self.base_url = base_url
-        self.wait = WebDriverWait(self.wd, 10)
-        self.ex = expected_conditions
         self.login_page = LoginPage(self)
         self.main_page = MainPage(self)
         self.deposit_page = DepositsPage(self)

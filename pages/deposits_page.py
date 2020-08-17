@@ -1,11 +1,14 @@
 import allure
 
 from locators.deposits_page import DepositsPageLocators
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class DepositsPage:
     def __init__(self, app):
         self.app = app
+        self.wait = WebDriverWait(self.app.wd, 10)
 
     def open_deposit(self):
         return self.app.wd.find_element(*DepositsPageLocators.OPEN_DEPOSIT)
@@ -63,7 +66,7 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Согласен")
     def click_agree_condition(self):
-        self.app.wait.until(self.app.ex.visibility_of_element_located(DepositsPageLocators.AGREE_CONDITION))
+        self.wait.until(EC.visibility_of_element_located(DepositsPageLocators.AGREE_CONDITION))
         return self.agree_condition().click()
 
     def confirm_button(self):
@@ -85,7 +88,7 @@ class DepositsPage:
 
     @allure.step("Проверка появления предупреждени о не валидной сумме")
     def invalid_amount(self):
-        self.app.wait.until(self.app.ex.visibility_of_element_located(DepositsPageLocators.INVALID_AMOUNT_ALERT))
+        self.wait.until(EC.visibility_of_element_located(DepositsPageLocators.INVALID_AMOUNT_ALERT))
         return self.app.wd.find_element(*DepositsPageLocators.INVALID_AMOUNT_ALERT)
 
     def invalid_amount_alert_is_visible(self):
