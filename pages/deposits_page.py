@@ -63,7 +63,7 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Согласен")
     def click_agree_condition(self):
-        self.app.wait.until(self.app.ex.element_to_be_clickable(DepositsPageLocators.AGREE_CONDITION))
+        self.app.wait.until(self.app.ex.visibility_of_element_located(DepositsPageLocators.AGREE_CONDITION))
         return self.agree_condition().click()
 
     def confirm_button(self):

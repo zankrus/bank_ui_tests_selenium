@@ -75,11 +75,12 @@ class CardPage:
         self.other_bank_card_save_button_click()
 
     def card_holder_preview(self) -> WebElement:
-        self.app.wait.until(self.app.ex.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
+        # self.app.wait.until(self.app.ex.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
         return self.app.wd.find_element(*CardPageLocators.CARD_HOLDER_PREVIEW)
 
     @allure.step("Проверка владельца карты на превью")
     def card_holder_preview_text(self) -> str:
+        self.app.wait.until(self.app.ex.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
         return self.card_holder_preview().text
 
     def card_expiring_preview(self) -> WebElement:
