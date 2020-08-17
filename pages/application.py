@@ -63,5 +63,5 @@ class Application:
         self.deposit_page.choose_demo_2_deposit()
         self.deposit_page.input_to_amount_field(test_data)
         self.deposit_page.choose_end_date()
-        self.deposit_page.click_next_button()
+        return self.deposit_page.click_next_button()
 
