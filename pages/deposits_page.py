@@ -1,5 +1,5 @@
 import allure
-from selenium.common.exceptions import TimeoutException
+from common.depost_page_constants import DepositPageConstants
 
 from locators.deposits_page import DepositsPageLocators
 from selenium.webdriver.support import expected_conditions as EC
@@ -67,7 +67,6 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Согласен")
     def click_agree_condition(self):
-        self.wait.until(EC.element_to_be_clickable(DepositsPageLocators.AGREE_CONDITION))
         return self.agree_condition().click()
 
     def confirm_button(self):
@@ -94,3 +93,11 @@ class DepositsPage:
 
     def invalid_amount_alert_is_visible(self):
         return self.invalid_amount().is_displayed()
+
+    def alert_about_percents(self):
+        return self.app.wd.find_element(*DepositsPageLocators.ALERT_TEXT)
+
+    def text_of_alert_about_percents(self) -> str:
+        self.wait.until(EC.text_to_be_present_in_element(DepositsPageLocators.ALERT_TEXT,
+                                                         DepositPageConstants.TEXT_OF_ALERT_PERCENTS))
+        return self.alert_about_percents().text

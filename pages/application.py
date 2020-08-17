@@ -65,3 +65,4 @@ class Application:
         self.deposit_page.choose_end_date()
         self.deposit_page.click_next_button()
 
+

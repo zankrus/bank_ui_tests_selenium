@@ -51,7 +51,7 @@ class TestsDeposit:
         # authorized_user.deposit_page.input_to_amount_field(Const.AMOUNT)
         # authorized_user.deposit_page.choose_end_date()
         # authorized_user.deposit_page.click_next_button()
-        time.sleep(4)
+        assert authorized_user.deposit_page.text_of_alert_about_percents() == Const.TEXT_OF_ALERT_PERCENTS
         authorized_user.deposit_page.click_agree_condition()
         authorized_user.deposit_page.click_confirm_button()
         assert authorized_user.deposit_page.is_displayed_success_logo()
