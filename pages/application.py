@@ -33,7 +33,7 @@ class Application:
             options.add_argument("--headless")
         self.wd = webdriver.Chrome(driver_path, options=options)
         self.base_url = base_url
-        self.wait = WebDriverWait(self.wd, 5)
+        self.wait = WebDriverWait(self.wd, 10)
         self.ex = expected_conditions
         self.login_page = LoginPage(self)
         self.main_page = MainPage(self)
