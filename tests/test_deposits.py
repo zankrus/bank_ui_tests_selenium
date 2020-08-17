@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from common.DepostPageConstants import DepositPageConstants as const
+from common.depost_page_constants import DepositPageConstants as Const
 
 
 @allure.suite("Депозиты")
@@ -38,37 +38,15 @@ class TestsDeposit:
             ОР: Перешли на страницу "Вклады" , появилось предупреждение
             о успешном добавлении вклада
             URL - https://idemo.bspb.ru/deposits
-        :param authorized_user: фикстура авторизованного юзера
-        :return: None
         """
-        authorized_user.open_main_page()
-        authorized_user.main_page.click_on_deposits()
-        authorized_user.deposit_page.click_open_deposit()
-        authorized_user.deposit_page.choose_usd()
-        authorized_user.deposit_page.choose_free_term()
-        authorized_user.deposit_page.choose_demo_2_deposit()
-        authorized_user.deposit_page.input_to_amouth_field(const.amouth)
-        assert (
-                authorized_user.deposit_page.text_of_percent_of_deposit()
-                in const.deposit_percents
-        )
-        authorized_user.deposit_page.choose_end_date()
-        authorized_user.deposit_page.click_next_button()
+        authorized_user.open_free_term_usd_deposit(Const.AMOUNT)
         authorized_user.deposit_page.click_agree_condition()
-        authorized_user.deposit_page.click_cofrim_button()
+        authorized_user.deposit_page.click_confirm_button()
         assert authorized_user.deposit_page.is_displayed_success_logo()
 
     @allure.title("тест на негативную сумму депозита")
     @allure.tag("negative")
-    @pytest.mark.parametrize("test_data", const.test_data_for_amouth)
+    @pytest.mark.parametrize("test_data", Const.TEST_DATA_FOR_AMOUNT)
     def test_invalid_amouth(self, authorized_user, test_data):
-        authorized_user.open_main_page()
-        authorized_user.main_page.click_on_deposits()
-        authorized_user.deposit_page.click_open_deposit()
-        authorized_user.deposit_page.choose_usd()
-        authorized_user.deposit_page.choose_free_term()
-        authorized_user.deposit_page.choose_demo_2_deposit()
-        authorized_user.deposit_page.input_to_amouth_field(test_data)
-        authorized_user.deposit_page.choose_end_date()
-        authorized_user.deposit_page.click_next_button()
-        assert authorized_user.deposit_page.invalid_amouth_alert_is_visible()
+        authorized_user.open_free_term_usd_deposit(test_data)
+        assert authorized_user.deposit_page.invalid_amount_alert_is_visible()

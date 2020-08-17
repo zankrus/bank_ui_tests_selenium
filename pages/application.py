@@ -5,6 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 from common.Utilities import FakeData
 from common.loggin import setup
@@ -31,6 +33,8 @@ class Application:
             options.add_argument("--headless")
         self.wd = webdriver.Chrome(driver_path, options=options)
         self.base_url = base_url
+        self.wait = WebDriverWait(self.wd, 5)
+        self.ex = expected_conditions
         self.login_page = LoginPage(self)
         self.main_page = MainPage(self)
         self.deposit_page = DepositsPage(self)
@@ -39,15 +43,28 @@ class Application:
 
     @allure.step("Открытие страницы авторизации")
     def open_login_page(self) -> WebDriver:
-        logger.info("Open Login Page")
+        logger.info("Открытие страницы авторизации")
         return self.wd.get(self.base_url)
 
     @allure.step("Открытие главной страницы")
     def open_main_page(self) -> WebDriver:
-        logger.info("Open Main Page")
+        logger.info("Открытие главной страницы")
         return self.wd.get((self.base_url + "/welcome"))
 
     @allure.step("Закрытие браузера")
     def teardown(self) -> WebDriver:
-        logger.info("Close browser")
+        logger.info("Закрытие браузера")
         return self.wd.quit()
+
+    @allure.step("Создание депозита в долларах со свободным сроком")
+    def open_free_term_usd_deposit(self, test_data):
+        logger.info('Создание депозита в долларах со свободным сроком')
+        self.open_main_page()
+        self.main_page.click_on_deposits()
+        self.deposit_page.click_open_deposit()
+        self.deposit_page.choose_usd()
+        self.deposit_page.choose_free_term()
+        self.deposit_page.choose_demo_2_deposit()
+        self.deposit_page.input_to_amount_field(test_data)
+        self.deposit_page.choose_end_date()
+        self.deposit_page.click_next_button()

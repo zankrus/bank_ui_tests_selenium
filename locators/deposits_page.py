@@ -2,19 +2,19 @@ from selenium.webdriver.common.by import By
 
 
 class DepositsPageLocators:
-    usd = (By.XPATH, "//input[@value='USD']")
-    free_term = (By.XPATH, "//input[@value='-1']")
-    open_deposit = (By.ID, "btn-show-rates")
-    demo_2_deposit_open = (
+    USD = (By.XPATH, "//input[@value='USD']")
+    FREE_TERM = (By.XPATH, "//input[@value='-1']")
+    OPEN_DEPOSIT = (By.ID, "btn-show-rates")
+    DEMO_2_DEPOSIT_OPEN = (
         By.XPATH,
         "//a[@class='btn btn-mini btn-primary place-deposit']",
     )
-    end_date = (By.XPATH, "//input[@id='endDate']")
-    date_31_august = (By.XPATH, "//td[@class='day new'][contains(text(),'6')]")
-    amouth = (By.ID, "amount")
-    next_button = (By.XPATH, "//button[@id='submit-button']")
-    agree_condition = (By.NAME, "condition.newDepositConditions")
-    confirm_button = (By.ID, "confirm")
-    succes_deposit = (By.XPATH, "//div[@class='alert alert-success']")
-    percent_of_deposit = (By.ID, "estimated-interest")
-    invalid_amouth_alert = (By.XPATH, "//div[@class='tooltip fade right in']")
+    END_DATE = (By.XPATH, "//input[@id='endDate']")
+    DATE_06_SEPTEMBER = (By.XPATH, "//td[@class='day new'][contains(text(),'6')]")
+    AMOUNT = (By.ID, "amount")
+    NEXT_BUTTON = (By.XPATH, "//button[@id='submit-button']")
+    AGREE_CONDITION = (By.NAME, "condition.newDepositConditions")
+    CONFIRM_BUTTON = (By.ID, "confirm")
+    SUCCESS_DEPOSIT = (By.XPATH, "//div[@class='alert alert-success']")
+    PERCENT_OF_DEPOSIT = (By.ID, "estimated-interest")
+    INVALID_AMOUNT_ALERT = (By.XPATH, "//div[@class='tooltip fade right in']")

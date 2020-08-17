@@ -2,9 +2,9 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-    deposits = (By.XPATH, "//li[@id='deposits']")
-    change_lang = (By.XPATH,
+    DEPOSITS = (By.XPATH, "//li[@id='deposits']")
+    CHANGE_LANG = (By.XPATH,
                    "//button[@class='btn btn-text btn-toggle active']")
-    cards = (By.ID, 'cards')
+    CARDS = (By.ID, 'cards')
 
-    logout_button = (By.CLASS_NAME, "icon-close")
+    LOGOUT_BUTTON = (By.CLASS_NAME, "icon-close")

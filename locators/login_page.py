@@ -2,12 +2,12 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPageLocators:
-    username_field = (By.XPATH, '//input[@name="username"]')
-    password_field = (By.XPATH, '//input[@name="password"]')
-    enter_button = (By.XPATH, "//button")
-    invalid_username_password_alert = (By.XPATH,
+    USERNAME_FIELD = (By.XPATH, '//input[@name="username"]')
+    PASSWORD_FIELD = (By.XPATH, '//input[@name="password"]')
+    ENTER_BUTTON = (By.XPATH, "//button")
+    INVALID_USERNAME_PASSWORD_ALERT = (By.XPATH,
                                        '//div[@class ="alert alert-error"]')
-    forgot_password = (By.XPATH, "//a[@class='chevron']")
-    reset_password_dialogue = (By.XPATH, "//div[@id='reset-password-dialog']")
-    forgot_password_text = (By.XPATH, "//h3")
-    switch_lang = (By.XPATH, "//a[@class='chevron locale inline-block']")
+    FORGOT_PASSWORD = (By.XPATH, "//a[@class='chevron']")
+    RESET_PASSWORD_DIALOGUE = (By.XPATH, "//div[@id='reset-password-dialog']")
+    FORGOT_PASSWORD_TEXT = (By.XPATH, "//h3")
+    SWITCH_LANG = (By.XPATH, "//a[@class='chevron locale inline-block']")

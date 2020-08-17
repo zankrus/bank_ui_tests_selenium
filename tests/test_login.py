@@ -4,7 +4,7 @@ import time
 import allure
 import pytest
 
-from common.LoginPageConstants import LoginPageConstants as const
+from common.login_page_constants import LoginPageConstants as Const
 
 
 @allure.suite("Авторизация")
@@ -25,16 +25,16 @@ class TestLoginPage:
             ОР: Оказались на странице логина
         """
         app.open_login_page()
-        assert const.redirect_url in app.wd.current_url
+        assert Const.REDIRECT_URL in app.wd.current_url , 'Не произошел редирект'
         app.login_page.click_enter_button()
         app.login_page.click_enter_button()
-        assert const.main_page_url in app.wd.current_url
+        assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
         app.open_main_page()
         app.main_page.click_on_logout_button()
 
     @allure.title("тест на негативную авторизацию")
     @allure.tag("negative")
-    @pytest.mark.parametrize("login, password", const.auth_data)
+    @pytest.mark.parametrize("login, password", Const.AUTH_DATA)
     def test_negative_login(self, app, login, password):
         """
         Тест на неуспешную авторизацию
@@ -51,12 +51,12 @@ class TestLoginPage:
         app.login_page.input_username(login)
         app.login_page.input_password(password)
         app.login_page.click_enter_button()
-        assert app.login_page.is_displayed_alert_invalid_username_or_password()
+        assert app.login_page.is_displayed_alert_invalid_username_or_password(), 'Предупреждение отсутствует'
         assert (
-                const.wrong_password_or_login_alert
-                in app.login_page.text_of_ivalid_username_alert()
-        )
-        assert const.wrong_login_url in app.wd.current_url
+                Const.WRONG_PASSWORD_OR_LOGIN_ALERT
+                in app.login_page.text_of_invalid_username_alert()
+        ), "текст предупреждения отличается"
+        assert Const.WRONG_LOGIN_URL in app.wd.current_url, "URL отличается"
 
     @allure.title("тест на появления окна восстановления пароля")
     @allure.tag("positive")
@@ -70,5 +70,5 @@ class TestLoginPage:
         """
         app.open_login_page()
         app.login_page.click_on_restore_access_button()
-        assert app.login_page.is_displayed_rest_password_dialogue()
-        assert const.forget_password_text == app.login_page.forgot_password_text()
+        assert app.login_page.is_displayed_rest_password_dialogue(), "Диалог сброса пароля не отображается "
+        assert Const.FORGET_PASSWORD_TEXT == app.login_page.forgot_password_text(), " текст отличается"
