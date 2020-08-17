@@ -13,7 +13,7 @@ class DepositsPageLocators:
     DATE_06_SEPTEMBER = (By.XPATH, "//td[@class='day new'][contains(text(),'6')]")
     AMOUNT = (By.ID, "amount")
     NEXT_BUTTON = (By.XPATH, "//button[@id='submit-button']")
-    AGREE_CONDITION = (By.NAME, "condition.newDepositConditions")
+    AGREE_CONDITION = (By.XPATH, "//input[@name='condition.newDepositConditions']")
     CONFIRM_BUTTON = (By.ID, "confirm")
     SUCCESS_DEPOSIT = (By.XPATH, "//div[@class='alert alert-success']")
     PERCENT_OF_DEPOSIT = (By.ID, "estimated-interest")
