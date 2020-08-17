@@ -2,7 +2,7 @@
 from typing import Any
 
 import allure
-from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import NoSuchWindowException, TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -82,8 +82,13 @@ class CardPage:
 
     @allure.step("Проверка владельца карты на превью")
     def card_holder_preview_text(self) -> str:
-        self.wait.until(EC.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
-        return self.card_holder_preview().text
+        try:
+            self.wait.until(EC.visibility_of_element_located(CardPageLocators.CARD_HOLDER_PREVIEW))
+            return self.card_holder_preview().text
+        except TimeoutException:
+            return self.card_holder_preview().text
+
+
 
     def card_expiring_preview(self) -> WebElement:
         return self.app.wd.find_element(*CardPageLocators.CARD_VALIDATE)
