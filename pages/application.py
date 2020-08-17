@@ -53,7 +53,7 @@ class Application:
         return self.wd.quit()
 
     @allure.step("Создание депозита в долларах со свободным сроком")
-    def open_free_term_usd_deposit(self, test_data, check):
+    def open_free_term_usd_deposit(self, test_data, check=False):
         logger.info('Создание депозита в долларах со свободным сроком')
         self.open_main_page()
         self.main_page.click_on_deposits()
