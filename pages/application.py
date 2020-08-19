@@ -1,4 +1,6 @@
+"""Файл с классом приложения - APP"""
 import logging
+from typing import Any
 
 import allure
 from selenium import webdriver
@@ -18,7 +20,7 @@ logger = logging.getLogger()
 
 class Application:
     """
-    Класс всего приложения - APP
+    Класс  приложения - APP
     """
 
     @allure.step("Инициализация класса APP")
@@ -39,22 +41,26 @@ class Application:
 
     @allure.step("Открытие страницы авторизации")
     def open_login_page(self) -> WebDriver:
+        """Открытие страницы авторизации."""
         logger.info("Открытие страницы авторизации")
         return self.wd.get(self.base_url)
 
     @allure.step("Открытие главной страницы")
     def open_main_page(self) -> WebDriver:
+        """Открытие главной страницы."""
         logger.info("Открытие главной страницы")
         return self.wd.get((self.base_url + "/welcome"))
 
     @allure.step("Закрытие браузера")
     def teardown(self) -> WebDriver:
+        """Закрытие браузера."""
         logger.info("Закрытие браузера")
         return self.wd.quit()
 
     @allure.step("Создание депозита в долларах со свободным сроком")
-    def open_free_term_usd_deposit(self, test_data, check=False):
-        logger.info('Создание депозита в долларах со свободным сроком')
+    def open_free_term_usd_deposit(self, test_data: Any, check=False) -> None:
+        """Создание депозита в долларах со свободным сроком"""
+        logger.info("Создание депозита в долларах со свободным сроком")
         self.open_main_page()
         self.main_page.click_on_deposits()
         self.deposit_page.click_open_deposit()
@@ -66,5 +72,3 @@ class Application:
             self.deposit_page.text_of_percent_of_deposit()
         self.deposit_page.choose_end_date()
         self.deposit_page.click_next_button()
-
-

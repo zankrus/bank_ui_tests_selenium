@@ -1,8 +1,11 @@
+"""Модуль тестов с Картами."""
 import allure
 
 
 @allure.suite("Операции с картами")
 class TestCards:
+    """Класс тестов с Картами"""
+
     @allure.title("Тест на добавление карты другого банка")
     @allure.tag("positive")
     def test_add_other_bank_card(self, authorized_user):
@@ -22,15 +25,18 @@ class TestCards:
             5. Нажать "Подтвердить"
             ОР: Оказались на странице обзора карт. Появилось сообщение
             "Карта ХХХХХ добавлена"
-        :param authorized_user: фикстура авторизованного юзера
-        :return: None
         """
         authorized_user.open_main_page()
         authorized_user.main_page.click_on_cards_button()
         authorized_user.card_page.click_on_other_bank_card()
         authorized_user.card_page.add_other_bank_card(authorized_user.fake_data)
-        assert authorized_user.card_page.card_holder_preview_text() == authorized_user.fake_data.name
-        assert authorized_user.card_page.card_expiring_preview_text() \
-               == authorized_user.fake_data.credit_card_expire_date
+        assert (
+            authorized_user.card_page.card_holder_preview_text()
+            == authorized_user.fake_data.name
+        )
+        assert (
+            authorized_user.card_page.card_expiring_preview_text()
+            == authorized_user.fake_data.credit_card_expire_date
+        )
         authorized_user.card_page.confirm_button_click()
         assert authorized_user.card_page.success_alert_is_displayed()

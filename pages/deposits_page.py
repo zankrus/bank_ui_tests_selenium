@@ -1,3 +1,4 @@
+"""Модуль страницы Депозиты."""
 import allure
 from common.depost_page_constants import DepositPageConstants as Const
 
@@ -7,6 +8,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class DepositsPage:
+    """Класс страницы Депозиты."""
+
     def __init__(self, app):
         self.app = app
         self.wait = WebDriverWait(self.app.wd, 10)
@@ -88,7 +91,9 @@ class DepositsPage:
 
     @allure.step("Проверка появления предупреждени о не валидной сумме")
     def invalid_amount(self):
-        self.wait.until(EC.visibility_of_element_located(DepositsPageLocators.INVALID_AMOUNT_ALERT))
+        self.wait.until(
+            EC.visibility_of_element_located(DepositsPageLocators.INVALID_AMOUNT_ALERT)
+        )
         return self.app.wd.find_element(*DepositsPageLocators.INVALID_AMOUNT_ALERT)
 
     def invalid_amount_alert_is_visible(self):
@@ -98,8 +103,11 @@ class DepositsPage:
         return self.app.wd.find_element(*DepositsPageLocators.ALERT_TEXT)
 
     def text_of_alert_about_percents(self) -> str:
-        self.wait.until(EC.text_to_be_present_in_element(DepositsPageLocators.ALERT_TEXT,
-                                                         Const.TEXT_OF_ALERT_PERCENTS))
+        self.wait.until(
+            EC.text_to_be_present_in_element(
+                DepositsPageLocators.ALERT_TEXT, Const.TEXT_OF_ALERT_PERCENTS
+            )
+        )
         return self.alert_about_percents().text
 
     @allure.step("Проверка суммый дохода от депозита")

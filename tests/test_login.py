@@ -1,4 +1,4 @@
-"""Файл с тестами страницы авторизации"""
+"""Файл с тестами страницы авторизации."""
 import allure
 import pytest
 
@@ -23,7 +23,7 @@ class TestLoginPage:
             ОР: Оказались на странице логина
         """
         app.open_login_page()
-        assert Const.REDIRECT_URL in app.wd.current_url , 'Не произошел редирект'
+        assert Const.REDIRECT_URL in app.wd.current_url, "Не произошел редирект"
         app.login_page.click_enter_button()
         app.login_page.click_enter_button()
         assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
@@ -49,10 +49,12 @@ class TestLoginPage:
         app.login_page.input_username(login)
         app.login_page.input_password(password)
         app.login_page.click_enter_button()
-        assert app.login_page.is_displayed_alert_invalid_username_or_password(), 'Предупреждение отсутствует'
         assert (
-                Const.WRONG_PASSWORD_OR_LOGIN_ALERT
-                in app.login_page.text_of_invalid_username_alert()
+            app.login_page.is_displayed_alert_invalid_username_or_password()
+        ), "Предупреждение отсутствует"
+        assert (
+            Const.WRONG_PASSWORD_OR_LOGIN_ALERT
+            in app.login_page.text_of_invalid_username_alert()
         ), "текст предупреждения отличается"
         assert Const.WRONG_LOGIN_URL in app.wd.current_url, "URL отличается"
 
@@ -68,5 +70,9 @@ class TestLoginPage:
         """
         app.open_login_page()
         app.login_page.click_on_restore_access_button()
-        assert app.login_page.is_displayed_rest_password_dialogue(), "Диалог сброса пароля не отображается "
-        assert Const.FORGET_PASSWORD_TEXT == app.login_page.forgot_password_text(), " текст отличается"
+        assert (
+            app.login_page.is_displayed_rest_password_dialogue()
+        ), "Диалог сброса пароля не отображается "
+        assert (
+            Const.FORGET_PASSWORD_TEXT == app.login_page.forgot_password_text()
+        ), " текст отличается"

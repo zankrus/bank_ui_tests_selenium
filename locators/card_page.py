@@ -1,7 +1,10 @@
+"""Файл для хранения локаторов страницы Карт."""
 from selenium.webdriver.common.by import By
 
 
 class CardPageLocators:
+    """Класс для хранения локаторов страницы Карт."""
+
     OTHER_BANK_CARD = (By.ID, "other-bank-card-bind")
     OTHER_BANK_CARDHOLDER_INPUT = (By.XPATH, "//input[@name='card.holderName']")
     OTHER_BANK_CARD_NUMBER = (By.XPATH, "//input[@name='card.number']")

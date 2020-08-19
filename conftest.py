@@ -14,7 +14,7 @@ def app(request):
     base_url = request.config.getoption("--base-url")
     headless = request.config.getoption("--headless")
     fixture = Application(base_url, headless)
-    logger.info(f'Запуск браузера с base url = {base_url} , headless - {headless}')
+    logger.info(f"Запуск браузера с base url = {base_url} , headless - {headless}")
     fixture.wd.implicitly_wait(10)
     fixture.wd.maximize_window()
     yield fixture
@@ -53,7 +53,7 @@ def pytest_runtest_makereport(item, call):
     if rep.when == "call" and rep.failed:
         mode = "a" if os.path.exists("failures") else "w"
         try:
-            with open("failures", mode) as f:
+            with open("failures", mode):
                 if "app" in item.fixturenames:
                     web_driver = item.funcargs["app"]
                 else:

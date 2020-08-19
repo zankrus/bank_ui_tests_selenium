@@ -1,3 +1,4 @@
+"""Файл с логгером."""
 import logging
 import sys
 
@@ -6,7 +7,8 @@ l_format = "%(asctime)s - %(levelname)s - %(message)s"
 
 def setup(level: str):
     """
-    Run logger
+    Запуск логгера.
+
     :param level: logger level 'CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'
     """
     set_level = getattr(logging, level)

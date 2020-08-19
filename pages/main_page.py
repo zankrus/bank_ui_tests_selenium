@@ -1,3 +1,4 @@
+"""Модуль главной страницы."""
 from typing import Any
 
 import allure
@@ -9,6 +10,8 @@ from locators.main_page import MainPageLocators
 
 
 class MainPage:
+    """Класс главной страницы."""
+
     def __init__(self, app):
         self.app = app
         self.wait = WebDriverWait(self.app.wd, 10)

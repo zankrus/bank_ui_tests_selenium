@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/zankrus/diploma_worke.svg?branch=master)](https://travis-ci.org/zankrus/diploma_worke)
 
-# Дипломный проект 
+# Дипломный проект
 Хей йоу, куэй братишки. А теперь официальная часть:
 
 В качестве тестируемого ресурса используется - демо ресурс банка "Санкт-Петербург"
@@ -8,7 +8,7 @@
 **URL -** https://idemo.bspb.ru/
 ## Установка
 
-Используйте  [pip](https://pip.pypa.io/en/stable/) для установки зависимостей проекта. Рекомендуется использовать  
+Используйте  [pip](https://pip.pypa.io/en/stable/) для установки зависимостей проекта. Рекомендуется использовать
 виртуальное окружение
 
 ```bash
@@ -27,10 +27,9 @@ pytest
 Установка allure
 Для генерации отчетов необходимо установить Scoop через PowerShell https://scoop.sh/
 
-После чего нужно выполнить команду
+После чего нужно выполнить команду в окне PowerShell
 ```bash
 scoop install allure
-в окне PowerShell
 ```
 
 Генерация отчетов
@@ -42,5 +41,6 @@ allure serve {allure_dir}
 ```
 ## Контакты
 
-- Telegram @ro_whale 
+- Telegram @ro_whale
 - [vk.com/ro_whale](https://vk.com/ro_whale)
+- Донаты кидайте на сбер

@@ -1,3 +1,4 @@
+"""Модуль страницы Авторизации."""
 import allure
 
 from common.login_page_constants import LoginPageConstants as Const
@@ -7,6 +8,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class LoginPage:
+    """Класс страницы авторизации"""
+
     def __init__(self, app):
         self.app = app
         self.wait = WebDriverWait(self.app.wd, 10)

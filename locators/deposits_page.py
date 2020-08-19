@@ -1,7 +1,10 @@
+"""Файл для хранения локаторов страницы Вкладов."""
 from selenium.webdriver.common.by import By
 
 
 class DepositsPageLocators:
+    """Класс для хранения локаторов страницы Вкладов."""
+
     USD = (By.XPATH, "//input[@value='USD']")
     FREE_TERM = (By.XPATH, "//input[@value='-1']")
     OPEN_DEPOSIT = (By.ID, "btn-show-rates")
