@@ -7,7 +7,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from common.Utilities import FakeData
+from common.utilities import FakeData
 from locators.card_page import CardPageLocators
 
 

@@ -22,13 +22,12 @@ def app(request):
 
 
 @pytest.fixture(scope="session")
-def authorized_user(app, request):
-    fixture = app
-    fixture.open_login_page()
-    fixture.login_page.click_enter_button()
-    fixture.login_page.click_enter_button()
-    fixture.open_main_page()
-    return fixture
+def authorized_user(app):
+    app.open_login_page()
+    app.login_page.click_enter_button()
+    app.login_page.click_enter_button()
+    app.open_main_page()
+    return app
 
 
 def pytest_addoption(parser):
@@ -57,7 +56,7 @@ def pytest_runtest_makereport(item, call):
                 if "app" in item.fixturenames:
                     web_driver = item.funcargs["app"]
                 else:
-                    print("Fail to take screen-shot")
+                    logger.error("Fail to take screen-shot")
                     return
             allure.attach(
                 web_driver.wd.get_screenshot_as_png(),
@@ -65,4 +64,4 @@ def pytest_runtest_makereport(item, call):
                 attachment_type=allure.attachment_type.PNG,
             )
         except Exception as e:
-            print("Fail to take screen-shot: {}".format(e))
+            logger.error("Fail to take screen-shot: {}".format(e))

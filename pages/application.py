@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from common.Utilities import FakeData
+from common.utilities import FakeData
 from common.loggin import setup
 from pages.card_page import CardPage
 from pages.deposits_page import DepositsPage
