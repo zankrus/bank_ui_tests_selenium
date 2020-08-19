@@ -15,7 +15,7 @@ def app(request):
     headless = request.config.getoption("--headless")
     fixture = Application(base_url, headless)
     logger.info(f"Запуск браузера с base url = {base_url} , headless - {headless}")
-    fixture.wd.implicitly_wait(10)
+    fixture.wd.implicitly_wait(5)
     fixture.wd.maximize_window()
     yield fixture
     fixture.teardown()

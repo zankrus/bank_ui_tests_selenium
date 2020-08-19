@@ -2,11 +2,13 @@
 from typing import Any
 
 import allure
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.main_page import MainPageLocators
+import time
 
 
 class MainPage:
@@ -45,3 +47,56 @@ class MainPage:
     @allure.step("Нажимаем кнопку разлогина")
     def click_on_logout_button(self) -> Any:
         return self.logout_button().click()
+
+    def question_button(self):
+        return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
+
+    @allure.step("Нажимаем кнопку - ВОПРОС")
+    def click_question_button(self) -> Any:
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.QUESTION_BUTTON))
+        return self.question_button().click()
+
+    def welcome_tour(self) -> WebElement:
+        return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR)
+
+    @allure.step("Нажимаем кнопку - Визуальный помощник")
+    def click_welcome_tour(self) -> Any:
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.WELCOME_TOUR))
+        return self.welcome_tour().click()
+
+    def welcome_tour_next_button(self):
+        return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR_NEXT_BUTTON)
+
+    @allure.step("Нажимаем кнопку - Далее")
+    def click_welcome_tour_next_button(self):
+        try:
+            self.wait.until(EC.presence_of_element_located(MainPageLocators.WELCOME_TOUR_NEXT_BUTTON))
+            return self.welcome_tour_next_button().click()
+        except StaleElementReferenceException:
+            return self.welcome_tour_next_button().click()
+
+    def bank_overview(self):
+        self.wait.until(EC.presence_of_element_located(MainPageLocators.BANK_OVERVIEW))
+        return self.app.wd.find_element(*MainPageLocators.BANK_OVERVIEW)
+
+    @allure.step("Проверка отображения блока - ОБЗОР")
+    def is_displayed_bank_overview(self):
+        return self.bank_overview().is_displayed()
+
+    def end_welcome_tour_button(self):
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.WELCOME_TOUR_END))
+        return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR_END)
+
+    @allure.step("Нажатие на кнопк - Завершить")
+    def click_end_welcome_tour_button(self):
+        return self.end_welcome_tour_button().click()
+
+    def welcome_tour_title(self):
+        self.wait.until(EC.presence_of_element_located(MainPageLocators.WELCOME_TOUR_TITLE))
+        return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR_TITLE)
+
+    @allure.step("Проверка текста заголовка Welcome Tour")
+    def text_welcome_tour_title(self, text):
+        self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
+        return self.welcome_tour_title().text
+

@@ -8,5 +8,10 @@ class MainPageLocators:
     DEPOSITS = (By.XPATH, "//li[@id='deposits']")
     CHANGE_LANG = (By.XPATH, "//button[@class='btn btn-text btn-toggle active']")
     CARDS = (By.ID, "cards")
-
+    QUESTION_BUTTON = (By.ID, "faq-link")
     LOGOUT_BUTTON = (By.CLASS_NAME, "icon-close")
+    WELCOME_TOUR = (By.CLASS_NAME, "restart-welcome-tour")
+    WELCOME_TOUR_NEXT_BUTTON = (By.ID, "welcome-tour-next")
+    BANK_OVERVIEW = (By.ID, "bank-overview")
+    WELCOME_TOUR_END = (By.ID, "welcome-tour-end")
+    WELCOME_TOUR_TITLE = (By.XPATH, "//div[@class='welcome-tour-title popover-title']")
