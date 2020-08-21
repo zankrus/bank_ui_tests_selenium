@@ -49,8 +49,7 @@ class MainPage:
         return self.logout_button().click()
 
     def question_button(self):
-        try:
-            return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
+        return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
     def click_question_button(self) -> Any:
