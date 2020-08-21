@@ -54,7 +54,11 @@ class MainPage:
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
     def click_question_button(self) -> Any:
-        return self.question_button().click()
+        try:
+            return self.question_button().click()
+        except TimeoutException:
+            # self.wait.until(EC.presence_of_element_located(MainPageLocators.QUESTION_BUTTON))
+            return self.question_button().click()
 
     def welcome_tour(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR)
