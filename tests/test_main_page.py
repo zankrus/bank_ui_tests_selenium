@@ -2,6 +2,8 @@
 import time
 
 import allure
+import pytest
+
 from common.main_page_constants import MainPageConstants as Const
 
 
@@ -9,6 +11,7 @@ from common.main_page_constants import MainPageConstants as Const
 class TestMainPage:
     """Класс тестов главной страницы"""
 
+    @pytest.mark.xfail()
     @allure.title("тест визуального помощника")
     @allure.tag("positive")
     def test_visual_helper(self, authorized_user):
