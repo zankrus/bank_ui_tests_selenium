@@ -2,7 +2,7 @@
 from typing import Any
 
 import allure
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -49,12 +49,16 @@ class MainPage:
         return self.logout_button().click()
 
     def question_button(self):
-        self.wait.until(EC.element_to_be_clickable(MainPageLocators.QUESTION_BUTTON))
+        self.wait.until(EC.presence_of_element_located(MainPageLocators.QUESTION_BUTTON))
         return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
     def click_question_button(self) -> Any:
-        return self.question_button().click()
+        try:
+            self.wait.until(EC.presence_of_element_located(MainPageLocators.QUESTION_BUTTON))
+            return self.question_button().click()
+        except TimeoutException:
+            self.question_button().click()
 
     def welcome_tour(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR)
