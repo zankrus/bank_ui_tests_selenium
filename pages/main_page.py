@@ -50,9 +50,6 @@ class MainPage:
 
     def question_button(self):
         try:
-            self.wait.until(EC.element_to_be_clickable(MainPageLocators.QUESTION_BUTTON))
-            return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
-        except TimeoutException:
             return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
