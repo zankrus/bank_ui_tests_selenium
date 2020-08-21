@@ -16,7 +16,7 @@ class MainPage:
 
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 10)
+        self.wait = WebDriverWait(self.app.wd, 4)
 
     def deposits_button(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.DEPOSITS)
