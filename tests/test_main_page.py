@@ -13,7 +13,6 @@ class TestMainPage:
     @allure.tag("positive")
     def test_visual_helper(self, authorized_user):
         authorized_user.open_main_page()
-        time.sleep(4)
         authorized_user.main_page.click_question_button()
         authorized_user.main_page.click_welcome_tour()
         assert authorized_user.main_page.is_displayed_bank_overview(), "Элемент 'ОБЗОР' не отображен"

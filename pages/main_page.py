@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.main_page import MainPageLocators
-import time
+
 
 
 class MainPage:
@@ -49,6 +49,7 @@ class MainPage:
         return self.logout_button().click()
 
     def question_button(self):
+        self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.QUESTION_BUTTON, '?'))
         return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
