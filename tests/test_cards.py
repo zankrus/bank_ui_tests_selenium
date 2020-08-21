@@ -1,6 +1,7 @@
 """Модуль тестов с Картами."""
 import allure
 
+from common.card_page_constants import CardPageConstants as Const
 
 @allure.suite("Операции с картами")
 class TestCards:
@@ -26,9 +27,7 @@ class TestCards:
             ОР: Оказались на странице обзора карт. Появилось сообщение
             "Карта ХХХХХ добавлена"
         """
-        authorized_user.open_main_page()
-        authorized_user.main_page.click_on_cards_button()
-        authorized_user.card_page.click_on_other_bank_card()
+        authorized_user.add_other_bank_card_page()
         authorized_user.card_page.add_other_bank_card(authorized_user.fake_data)
         assert (
             authorized_user.card_page.card_holder_preview_text()
@@ -40,3 +39,27 @@ class TestCards:
         )
         authorized_user.card_page.confirm_button_click()
         assert authorized_user.card_page.success_alert_is_displayed()
+
+    @allure.title("Тест на добавление карты другого банка c незаполненными полями")
+    @allure.tag("negative")
+    def test_add_other_bank_card_with_empty_field(self, authorized_user):
+        """
+               Тест на успешное добавление карты другого банка
+               Шаги:
+                   1. Нажать на вкладку "Карты"
+                   ОР:  Перешли на страницу "Карты"
+                   URL - https://idemo.bspb.ru/cards
+                   2. Внизу страницы нажать на кнопку " Добавить карту другого банка"
+                   ОР: Перешли на страницу "Добавить карту другого банка"
+                   URL - https://idemo.bspb.ru/other-bank-cards/new
+                   3. Нажать "Сохранить"
+                   ОР: Появились предупреждения "Обязательное поле" .
+               """
+        authorized_user.add_other_bank_card_page()
+        authorized_user.card_page.other_bank_card_save_button_click()
+        assert authorized_user.card_page.text_empty_card_number_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
+        assert authorized_user.card_page.text_empty_card_expire_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
+        assert authorized_user.card_page.text_empty_card_csv_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
+        assert authorized_user.card_page.text_not_correct_fields_error() == Const.NOT_CORRECT_FIELDS_ALERT
+
+

@@ -72,3 +72,9 @@ class Application:
             self.deposit_page.text_of_percent_of_deposit()
         self.deposit_page.choose_end_date()
         self.deposit_page.click_next_button()
+
+    @allure.step("Переход на страницу 'Добавление карты другого банка' ")
+    def add_other_bank_card_page(self):
+        self.open_main_page()
+        self.main_page.click_on_cards_button()
+        self.card_page.click_on_other_bank_card()

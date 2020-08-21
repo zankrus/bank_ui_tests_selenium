@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from common.utilities import FakeData
+from common.card_page_constants import CardPageConstants as Const
 from locators.card_page import CardPageLocators
 
 
@@ -129,3 +130,40 @@ class CardPage:
     @allure.step("Проверка отображения сообщения о успехе")
     def success_alert_is_displayed(self):
         return self.success_alert().is_displayed()
+
+    def empty_card_number_error(self):
+        self.wait.until(EC.text_to_be_present_in_element(CardPageLocators.CARD_NUMBER_ERROR_MESSAGE,
+                                                         Const.EMPTY_FIELD_ERROR_MESSAGE))
+        return self.app.wd.find_element(*CardPageLocators.CARD_NUMBER_ERROR_MESSAGE)
+
+    @allure.step("Проверка текста предупреждение под полем Номер Карты")
+    def text_empty_card_number_error(self):
+        return self.empty_card_number_error().text
+
+    def empty_card_expire_error(self):
+        self.wait.until(EC.text_to_be_present_in_element(CardPageLocators.CARD_EXPIRE_ERROR_MESSAGE,
+                                                         Const.EMPTY_FIELD_ERROR_MESSAGE))
+        return self.app.wd.find_element(*CardPageLocators.CARD_EXPIRE_ERROR_MESSAGE)
+
+    @allure.step("Проверка текста предупреждение под полем Действует До")
+    def text_empty_card_expire_error(self):
+        return self.empty_card_expire_error().text
+
+    def empty_card_csv_error(self):
+        self.wait.until(EC.text_to_be_present_in_element(CardPageLocators.CSV_CODE_ERROR_MESSAGE,
+                                                         Const.EMPTY_FIELD_ERROR_MESSAGE))
+        return self.app.wd.find_element(*CardPageLocators.CSV_CODE_ERROR_MESSAGE)
+
+    @allure.step("Проверка текста предупреждение под полем CSV КОД")
+    def text_empty_card_csv_error(self):
+        return self.empty_card_csv_error().text
+
+    def not_correct_fields_error(self):
+        self.wait.until(EC.text_to_be_present_in_element(CardPageLocators.NOT_CORRECT_FIELDS_ALERT,
+                                                         Const.NOT_CORRECT_FIELDS_ALERT))
+        return self.app.wd.find_element(*CardPageLocators.NOT_CORRECT_FIELDS_ALERT)
+
+    @allure.step("Проверка текста предупреждение под полем CSV КОД")
+    def text_not_correct_fields_error(self):
+        return self.not_correct_fields_error().text
+

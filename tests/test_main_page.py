@@ -1,5 +1,4 @@
 """Модуль тестов главной страницы."""
-import time
 
 import allure
 import pytest
@@ -10,7 +9,6 @@ from common.main_page_constants import MainPageConstants as Const
 @allure.suite("Тесты главной страницы")
 class TestMainPage:
     """Класс тестов главной страницы"""
-
     @pytest.mark.xfail()
     @allure.title("тест визуального помощника")
     @allure.tag("positive")
