@@ -7,8 +7,8 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from locators.main_page import MainPageLocators
-import time
+from locators.main_page_locators import MainPageLocators
+
 
 
 class MainPage:
@@ -100,3 +100,10 @@ class MainPage:
         self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
         return self.welcome_tour_title().text
 
+    def account_number(self, number):
+        return self.app.wd.find_element(*MainPageLocators.account_number(number))
+
+    @allure.step("Кликаем на номер выбранный номер счета")
+    def click_on_account_number(self, number):
+        self.wait.until(EC.presence_of_element_located(MainPageLocators.account_number(number)))
+        return self.account_number(number).click()

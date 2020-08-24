@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from common.Utilities import FakeData
-from locators.card_page import CardPageLocators
+from locators.card_page_locators import CardPageLocators
 
 
 class CardPage:

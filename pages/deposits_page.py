@@ -2,7 +2,7 @@
 import allure
 from common.depost_page_constants import DepositPageConstants as Const
 
-from locators.deposits_page import DepositsPageLocators
+from locators.deposits_page_locators import DepositsPageLocators
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 

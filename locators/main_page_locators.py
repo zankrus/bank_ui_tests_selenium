@@ -15,3 +15,7 @@ class MainPageLocators:
     BANK_OVERVIEW = (By.ID, "bank-overview")
     WELCOME_TOUR_END = (By.ID, "welcome-tour-end")
     WELCOME_TOUR_TITLE = (By.XPATH, "//div[@class='welcome-tour-title popover-title']")
+
+    @staticmethod
+    def account_number(number):
+        return By.XPATH, f"//*[contains(text(),'{number}')]"

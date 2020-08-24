@@ -14,6 +14,7 @@ from pages.card_page import CardPage
 from pages.deposits_page import DepositsPage
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
+from pages.taxes_page import TaxesPage
 
 logger = logging.getLogger()
 
@@ -37,7 +38,8 @@ class Application:
         self.main_page = MainPage(self)
         self.deposit_page = DepositsPage(self)
         self.card_page = CardPage(self)
-        self.fake_data = FakeData(self).lets_random_bitchas()
+        self.fake_data = FakeData.lets_random_bitchas()
+        self.taxes_page = TaxesPage(self)
 
     @allure.step("Открытие страницы авторизации")
     def open_login_page(self) -> WebDriver:
