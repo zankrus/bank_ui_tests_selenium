@@ -2,12 +2,16 @@
 from typing import Any
 
 import allure
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+<<<<<<< HEAD
 from locators.main_page_locators import MainPageLocators
+=======
+from locators.main_page import MainPageLocators
+>>>>>>> 6784694efaec4fbb4034fb690565931f19f8f411
 
 
 
@@ -16,7 +20,7 @@ class MainPage:
 
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 10)
+        self.wait = WebDriverWait(self.app.wd, 4)
 
     def deposits_button(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.DEPOSITS)
@@ -49,12 +53,16 @@ class MainPage:
         return self.logout_button().click()
 
     def question_button(self):
+        self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.QUESTION_BUTTON, '?'))
         return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
     def click_question_button(self) -> Any:
-        self.wait.until(EC.element_to_be_clickable(MainPageLocators.QUESTION_BUTTON))
-        return self.question_button().click()
+        try:
+            return self.question_button().click()
+        except TimeoutException:
+            # self.wait.until(EC.presence_of_element_located(MainPageLocators.QUESTION_BUTTON))
+            return self.question_button().click()
 
     def welcome_tour(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR)
@@ -99,6 +107,7 @@ class MainPage:
     def text_welcome_tour_title(self, text):
         self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
         return self.welcome_tour_title().text
+<<<<<<< HEAD
 
     def account_number(self, number):
         return self.app.wd.find_element(*MainPageLocators.account_number(number))
@@ -107,3 +116,5 @@ class MainPage:
     def click_on_account_number(self, number):
         self.wait.until(EC.presence_of_element_located(MainPageLocators.account_number(number)))
         return self.account_number(number).click()
+=======
+>>>>>>> 6784694efaec4fbb4034fb690565931f19f8f411
