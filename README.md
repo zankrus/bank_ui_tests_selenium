@@ -5,7 +5,8 @@
 
 **URL -** https://idemo.bspb.ru/
 
-СТЭК - Selenium + Pytest
+СТЭК - Selenium WebDriver + Pytest.
+
 ## Установка
 
 Используйте  [pip](https://pip.pypa.io/en/stable/) для установки зависимостей проекта. Рекомендуется использовать
@@ -14,14 +15,26 @@
 ```bash
 pip install -r requirements.txt
 ```
-## Запуск
+## Запуск тестов
 1)Содайте и активируйте виртульное окружение
 
-2)Запустите pytest для запуска всех тестов(*флаг **--headless** для режиме без GUI*)
+```bash
+pip install virtualenv 
+```
+
+2)Активируйте вирутальное окружение
 ```bash
 virtualenv <env_name>
 <env_name>\Scripts\activate.bat
+```
+
+3)Запустите pytest для запуска всех тестов(*флаг **--headless** для режиме без GUI*)
+```bash
 pytest
+```
+4)Для запуска конкретного теста из файла :
+```bash
+pytest <filename>::<testclassname>::<testname>
 ```
 ## Allure
 Установка allure

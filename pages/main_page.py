@@ -7,13 +7,8 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-<<<<<<< HEAD
+
 from locators.main_page_locators import MainPageLocators
-=======
-from locators.main_page import MainPageLocators
->>>>>>> 6784694efaec4fbb4034fb690565931f19f8f411
-
-
 
 class MainPage:
     """Класс главной страницы."""
@@ -107,7 +102,6 @@ class MainPage:
     def text_welcome_tour_title(self, text):
         self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
         return self.welcome_tour_title().text
-<<<<<<< HEAD
 
     def account_number(self, number):
         return self.app.wd.find_element(*MainPageLocators.account_number(number))
@@ -116,5 +110,3 @@ class MainPage:
     def click_on_account_number(self, number):
         self.wait.until(EC.presence_of_element_located(MainPageLocators.account_number(number)))
         return self.account_number(number).click()
-=======
->>>>>>> 6784694efaec4fbb4034fb690565931f19f8f411

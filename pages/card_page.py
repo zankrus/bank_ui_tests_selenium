@@ -7,14 +7,10 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-<<<<<<< HEAD
-from common.Utilities import FakeData
-from locators.card_page_locators import CardPageLocators
-=======
+
 from common.utilities import FakeData
 from common.card_page_constants import CardPageConstants as Const
-from locators.card_page import CardPageLocators
->>>>>>> 6784694efaec4fbb4034fb690565931f19f8f411
+from locators.card_page_locators import CardPageLocators
 
 
 class CardPage:
