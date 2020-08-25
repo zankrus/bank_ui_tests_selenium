@@ -107,7 +107,7 @@ class MainPage:
         try:
             self.wait.until(EC.visibility_of_element_located(MainPageLocators.TESING))
             return self.app.wd.find_element(*MainPageLocators.TESING)
-        except NoSuchElementException:
+        except TimeoutException:
             self.wait.until(EC.element_to_be_clickable(MainPageLocators.TESING))
             return self.app.wd.find_element(*MainPageLocators.TESING)
 
