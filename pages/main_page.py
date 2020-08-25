@@ -103,15 +103,13 @@ class MainPage:
         self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
         return self.welcome_tour_title().text
 
-    def account_number(self, number):
+    def account_number(self):
         try:
-            return self.app.wd.find_element(*MainPageLocators.account_number(number))
+            return self.app.wd.find_element(*MainPageLocators.TESING)
         except NoSuchElementException:
-            self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.account_number(number),
-                                                             str(number)))
-            return self.app.wd.find_element(*MainPageLocators.account_number(number))
+            self.wait.until(EC.element_to_be_clickable(MainPageLocators.TESING))
+            return self.app.wd.find_element(*MainPageLocators.TESING)
 
     @allure.step("Кликаем на номер выбранный номер счета")
-    def click_on_account_number(self, number):
-        time.sleep(4)
-        return self.account_number(number).click()
+    def click_on_account_number(self):
+        return self.account_number().click()

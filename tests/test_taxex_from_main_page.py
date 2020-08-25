@@ -15,7 +15,7 @@ class TestPayTaxesFromMainPage:
             3)
         """
         authorized_user.open_main_page()
-        authorized_user.main_page.click_on_account_number(Const.TESTING_TAX_ACCOUNT)
+        authorized_user.main_page.click_on_account_number()
         authorized_user.taxes_page.click_on_check_taxes_button()
         assert authorized_user.taxes_page.taxes_check_result_text_is_displayed()
         authorized_user.taxes_page.click_pay_tax_button()
