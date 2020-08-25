@@ -110,6 +110,5 @@ class MainPage:
         try:
             return self.account_number(number).click()
         except NoSuchElementException:
-            # self.wait.until(EC.element_to_be_clickable(MainPageLocators.account_number(number)))
+            self.wait.until(EC.element_to_be_clickable(MainPageLocators.account_number(number)))
             return self.account_number(number).click()
-        # return self.account_number(number).click()
