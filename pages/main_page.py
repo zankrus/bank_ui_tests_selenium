@@ -1,4 +1,5 @@
 """Модуль главной страницы."""
+import time
 from typing import Any
 
 import allure
@@ -112,4 +113,5 @@ class MainPage:
 
     @allure.step("Кликаем на номер выбранный номер счета")
     def click_on_account_number(self, number):
+        time.sleep(4)
         return self.account_number(number).click()
