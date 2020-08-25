@@ -105,6 +105,7 @@ class MainPage:
 
     def account_number(self):
         try:
+            self.wait.until(EC.visibility_of_element_located(MainPageLocators.TESING))
             return self.app.wd.find_element(*MainPageLocators.TESING)
         except NoSuchElementException:
             self.wait.until(EC.element_to_be_clickable(MainPageLocators.TESING))
