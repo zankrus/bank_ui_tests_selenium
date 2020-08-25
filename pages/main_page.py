@@ -108,5 +108,5 @@ class MainPage:
 
     @allure.step("Кликаем на номер выбранный номер счета")
     def click_on_account_number(self, number):
-        self.wait.until(EC.presence_of_element_located(MainPageLocators.account_number(number)))
+        self.wait.until(EC.visibility_of_element_located(MainPageLocators.account_number(number)))
         return self.account_number(number).click()

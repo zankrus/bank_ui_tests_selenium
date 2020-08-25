@@ -1,9 +1,8 @@
 """Файл с тестами страницы авторизации."""
 import allure
 import pytest
-
+import time
 from common.login_page_constants import LoginPageConstants as Const
-
 
 @allure.suite("Авторизация")
 class TestLoginPage:
@@ -29,6 +28,7 @@ class TestLoginPage:
         assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
         app.open_main_page()
         app.main_page.click_on_logout_button()
+
 
     @allure.title("тест на негативную авторизацию")
     @allure.tag("negative")
