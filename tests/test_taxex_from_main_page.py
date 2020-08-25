@@ -19,6 +19,6 @@ class TestPayTaxesFromMainPage:
         authorized_user.taxes_page.click_on_check_taxes_button()
         assert authorized_user.taxes_page.taxes_check_result_text_is_displayed()
         authorized_user.taxes_page.click_pay_tax_button()
-        # time.sleep(5)
+        time.sleep(5)
 
 

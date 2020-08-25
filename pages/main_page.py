@@ -2,7 +2,7 @@
 from typing import Any
 
 import allure
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -56,7 +56,6 @@ class MainPage:
         try:
             return self.question_button().click()
         except TimeoutException:
-            # self.wait.until(EC.presence_of_element_located(MainPageLocators.QUESTION_BUTTON))
             return self.question_button().click()
 
     def welcome_tour(self) -> WebElement:
@@ -108,5 +107,9 @@ class MainPage:
 
     @allure.step("Кликаем на номер выбранный номер счета")
     def click_on_account_number(self, number):
-        # self.wait.until(EC.visibility_of_element_located(MainPageLocators.account_number(number)))
-        return self.account_number(number).click()
+        try:
+            return self.account_number(number).click()
+        except NoSuchElementException:
+            # self.wait.until(EC.element_to_be_clickable(MainPageLocators.account_number(number)))
+            return self.account_number(number).click()
+        # return self.account_number(number).click()
