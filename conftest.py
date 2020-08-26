@@ -21,7 +21,7 @@ def app(request):
     fixture.teardown()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def authorized_user(app):
     app.open_login_page()
     app.login_page.click_enter_button()
