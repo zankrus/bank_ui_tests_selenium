@@ -45,6 +45,7 @@ class Application:
     def open_login_page(self) -> WebDriver:
         """Открытие страницы авторизации."""
         logger.info("Открытие страницы авторизации")
+        logger.info(str(self.wd.current_url))
         return self.wd.get(self.base_url)
 
     @allure.step("Открытие главной страницы")
