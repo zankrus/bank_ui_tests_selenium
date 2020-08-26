@@ -7,7 +7,7 @@ class TestPayTaxesFromMainPage:
     """
     Класс для тестов по оплате налогов с главной страницы
     """
-    def test_pay_taxes_from_main_page(self,authorized_user):
+    def test_pay_taxes_from_main_page(self, authorized_user):
         """
         Шаги:
             1) Перейти на главную страницу
