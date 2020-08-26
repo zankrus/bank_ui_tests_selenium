@@ -58,21 +58,21 @@ class TestLoginPage:
     #     ), "текст предупреждения отличается"
     #     assert Const.WRONG_LOGIN_URL in app.wd.current_url, "URL отличается"
 
-    @allure.title("тест на появления окна восстановления пароля")
-    @allure.tag("positive")
-    def test_forgot_login_password(self, app):
-        """
-        Тест на появление окна "Забыли логин или пароль"
-        Шаги:
-            1.Перейти по ссылке https://idemo.bspb.ru/auth
-            2.Нажать "Восстановить доступ"
-            ОР : Появилось окно с информацией по восстановлению логина или пароля
-        """
-        app.open_login_page()
-        app.login_page.click_on_restore_access_button()
-        assert (
-            app.login_page.is_displayed_rest_password_dialogue()
-        ), "Диалог сброса пароля не отображается "
-        assert (
-            Const.FORGET_PASSWORD_TEXT == app.login_page.forgot_password_text()
-        ), " текст отличается"
+    # @allure.title("тест на появления окна восстановления пароля")
+    # @allure.tag("positive")
+    # def test_forgot_login_password(self, app):
+    #     """
+    #     Тест на появление окна "Забыли логин или пароль"
+    #     Шаги:
+    #         1.Перейти по ссылке https://idemo.bspb.ru/auth
+    #         2.Нажать "Восстановить доступ"
+    #         ОР : Появилось окно с информацией по восстановлению логина или пароля
+    #     """
+    #     app.open_login_page()
+    #     app.login_page.click_on_restore_access_button()
+    #     assert (
+    #         app.login_page.is_displayed_rest_password_dialogue()
+    #     ), "Диалог сброса пароля не отображается "
+    #     assert (
+    #         Const.FORGET_PASSWORD_TEXT == app.login_page.forgot_password_text()
+    #     ), " текст отличается"
