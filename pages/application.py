@@ -52,6 +52,7 @@ class Application:
     def open_main_page(self) -> WebDriver:
         """Открытие главной страницы."""
         logger.info("Открытие главной страницы")
+        logger.info("Текущий URL - " + self.wd.current_url)
         return self.wd.get((self.base_url + "/welcome"))
 
     @allure.step("Закрытие браузера")

@@ -1,33 +1,33 @@
-"""Файл с тестами страницы авторизации."""
-import allure
-import pytest
-import time
-from common.login_page_constants import LoginPageConstants as Const
-
-@allure.suite("Авторизация")
-class TestLoginPage:
-    @allure.title("тест на успешную авторизацию")
-    @allure.tag("positive")
-    def test_login(self, app):
-        """
-        Тест на успешную авторизацию пользователя
-        Шаги:
-            1. Перейти по ссылке https://idemo.bspb.ru/auth
-            ОР:  'Интернет банк - Банк Санкт-Петербург в шапке, произошел редирект
-            2. Логин и пароль автозополнились , нажать "Войти"
-            3. СМС код автозаполнился - нажать "Войти"
-            ОР: Оказались на главной странице личного кабинета
-            URL - https://idemo.bspb.ru/welcome
-            4. Выйти из аккаунта
-            ОР: Оказались на странице логина
-        """
-        app.open_login_page()
-        assert Const.REDIRECT_URL in app.wd.current_url, "Не произошел редирект"
-        app.login_page.click_enter_button()
-        app.login_page.click_enter_button()
-        assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
-        app.open_main_page()
-        app.main_page.click_on_logout_button()
+# """Файл с тестами страницы авторизации."""
+# import allure
+# import pytest
+# import time
+# from common.login_page_constants import LoginPageConstants as Const
+#
+# @allure.suite("Авторизация")
+# class TestLoginPage:
+#     @allure.title("тест на успешную авторизацию")
+#     @allure.tag("positive")
+#     def test_login(self, app):
+#         """
+#         Тест на успешную авторизацию пользователя
+#         Шаги:
+#             1. Перейти по ссылке https://idemo.bspb.ru/auth
+#             ОР:  'Интернет банк - Банк Санкт-Петербург в шапке, произошел редирект
+#             2. Логин и пароль автозополнились , нажать "Войти"
+#             3. СМС код автозаполнился - нажать "Войти"
+#             ОР: Оказались на главной странице личного кабинета
+#             URL - https://idemo.bspb.ru/welcome
+#             4. Выйти из аккаунта
+#             ОР: Оказались на странице логина
+#         """
+#         app.open_login_page()
+#         assert Const.REDIRECT_URL in app.wd.current_url, "Не произошел редирект"
+#         app.login_page.click_enter_button()
+#         app.login_page.click_enter_button()
+#         assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
+#         app.open_main_page()
+#         app.main_page.click_on_logout_button()
 
     #
     # @allure.title("тест на негативную авторизацию")
