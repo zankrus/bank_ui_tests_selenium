@@ -42,18 +42,18 @@ class Application:
         self.taxes_page = TaxesPage(self)
 
     @allure.step("Открытие страницы авторизации")
-    def open_login_page(self) -> WebDriver:
+    def open_login_page(self) -> None:
         """Открытие страницы авторизации."""
         logger.info("Открытие страницы авторизации")
+        self.wd.get(self.base_url)
         logger.info("Текущий URL - " + self.wd.current_url)
-        return self.wd.get(self.base_url)
 
     @allure.step("Открытие главной страницы")
-    def open_main_page(self) -> WebDriver:
+    def open_main_page(self) -> None:
         """Открытие главной страницы."""
         logger.info("Открытие главной страницы")
+        self.wd.get((self.base_url + "/welcome"))
         logger.info("Текущий URL - " + self.wd.current_url)
-        return self.wd.get((self.base_url + "/welcome"))
 
     @allure.step("Закрытие браузера")
     def teardown(self) -> WebDriver:

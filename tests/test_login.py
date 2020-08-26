@@ -27,7 +27,7 @@ class TestLoginPage:
         app.login_page.click_enter_button()
         assert Const.MAIN_PAGE_URL in app.wd.current_url, "Урл отличается"
         app.open_main_page()
-        # app.main_page.click_on_logout_button()
+        app.main_page.click_on_logout_button()
 
 
     @allure.title("тест на негативную авторизацию")
