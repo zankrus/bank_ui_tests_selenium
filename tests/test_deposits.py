@@ -53,5 +53,23 @@ class TestsDeposit:
     @allure.tag("negative")
     @pytest.mark.parametrize("test_data", Const.TEST_DATA_FOR_AMOUNT)
     def test_invalid_amount(self, authorized_user, test_data):
+        """
+        Тест на успешное добавление карты другого банка
+        Шаги:
+            1. Нажать на вкладку "Вклады"
+            ОР:  Перешли на страницу "Вклады"
+            URL - https://idemo.bspb.ru/deposits
+            2. Нажать "Открыть вклад"
+            ОР: Открылась страница "Открыть новый вклад"
+            URL - https://idemo.bspb.ru/deposits/rates
+            3. Выбрать валюту - USD, срок - свободный срок
+            ОР: Стал доступен единственны вклад " Демо депозит №2"
+            4. Нажать "Открыть вклад"
+            ОР: Перешли на страницу "Вклады Открыть новый вклад""
+            URL - https://idemo.bspb.ru/deposits/form/10170?days=15
+            5. В поле сумма ввести - невалидное значение
+            ОР: Пояаилось предупреждение "Невозможно октрыть вклад с такой
+            комбинацией суммы"
+        """
         authorized_user.open_free_term_usd_deposit(test_data)
         assert authorized_user.deposit_page.invalid_amount_alert_is_visible()
