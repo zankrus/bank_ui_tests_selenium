@@ -17,3 +17,5 @@ class MainPageLocators:
     TESING = (By.XPATH, "//div[contains(text(),'500100732259')]")
     PRIVATE_EVENT = (By.XPATH, "//div[@class='calendar-event event-add']")
     EVENT_NAME = (By.XPATH, "//input[@name='event.name']")
+    EVENT_NAME_DESCRIPTION = (By.XPATH, "//textarea[@name='event.description']")
+    EVENT_NAME_SAVE_BUTTON = (By.XPATH, '//*[contains(text(),"Сохранить")]')

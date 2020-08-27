@@ -51,6 +51,8 @@ class TestMainPage:
     def test_add_and_delete_private_event(self, authorized_user):
         authorized_user.open_main_page()
         authorized_user.main_page.click_private_event_button()
-        authorized_user.main_page.input_event_name_field('ТЕСТ')
+        authorized_user.main_page.input_event_name_field(authorized_user.fake_data.title)
+        authorized_user.main_page.input_event_description_field(authorized_user.fake_data.text)
+        authorized_user.main_page.click_event_save_button()
         time.sleep(5)
         pass

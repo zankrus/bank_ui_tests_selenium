@@ -131,7 +131,7 @@ class MainPage:
     def event_name_field(self):
         return self.app.wd.find_element(*MainPageLocators.EVENT_NAME)
 
-    @allure.step("Вводим название личеного события - {keys}")
+    @allure.step("Вводим название личного события - {keys}")
     def input_event_name_field(self, keys):
         self.wait.until(EC.element_to_be_clickable(MainPageLocators.EVENT_NAME))
         logger.info("Видимость элемента - поле Название личного события - "
@@ -141,3 +141,28 @@ class MainPage:
                     + str(keys)
                     )
         return self.event_name_field().send_keys(keys)
+
+    def event_description_field(self):
+        return self.app.wd.find_element(*MainPageLocators.EVENT_NAME_DESCRIPTION)
+
+    @allure.step("Вводим описание личного события - {keys}")
+    def input_event_description_field(self, keys):
+        self.wait.until(EC.visibility_of_element_located(MainPageLocators.EVENT_NAME_DESCRIPTION))
+        logger.info("Видимость элемента - поле Описание личного события - "
+                    + str(self.event_description_field().is_displayed())
+                    )
+        logger.info("Введенное значение - "
+                    + str(keys)
+                    )
+        return self.event_description_field().send_keys(keys)
+
+    def event_save_button(self):
+        return self.app.wd.find_element(*MainPageLocators.EVENT_NAME_SAVE_BUTTON)
+
+    @allure.step("Нажимаем на кнопку Сохранить")
+    def click_event_save_button(self):
+        logger.info("Видимость элемента - кнопка 'Сохранить' личного события - "
+                    + str(self.event_save_button().is_displayed())
+                    )
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.EVENT_NAME_SAVE_BUTTON))
+        return self.event_save_button().click()
