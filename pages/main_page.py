@@ -1,5 +1,5 @@
 """Модуль главной страницы."""
-import time
+import logging
 from typing import Any
 
 import allure
@@ -8,8 +8,10 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-
 from locators.main_page_locators import MainPageLocators
+
+logger = logging.getLogger()
+
 
 class MainPage:
     """Класс главной страницы."""
@@ -114,3 +116,11 @@ class MainPage:
     @allure.step("Кликаем на номер выбранный номер счета")
     def click_on_account_number(self):
         return self.account_number().click()
+
+    def add_private_event_button(self):
+        return self.app.wd.find_element(*MainPageLocators.PRIVATE_EVENT)
+
+    def click_private_event_button(self):
+        logger.info("Видимость кнопки - Личное событие - "
+                    + str(self.add_private_event_button().is_displayed())
+                    )

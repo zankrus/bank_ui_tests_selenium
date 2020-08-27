@@ -30,6 +30,12 @@ def authorized_user(app):
     return app
 
 
+@pytest.fixture(autouse=True)
+def test_logger(request):
+    logger.info(f" \n + Начало теста - {request.node.nodeid}")
+    yield
+    logger.info(f"Конец теста - - {request.node.nodeid} \n")
+
 def pytest_addoption(parser):
     parser.addoption(
         "--base-url",

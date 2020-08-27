@@ -45,3 +45,8 @@ class TestMainPage:
         authorized_user.taxes_page.click_pay_tax_button()
         authorized_user.payment_page.click_next_button()
         assert authorized_user.payment_page.text_of_error_alert() == Constpayment.ERROR_MESSAGE
+
+    @allure.title("Создания личного события с главной страницы")
+    @allure.tag("positive")
+    def test_add_and_delete_private_event(self, authorized_user):
+        pass
