@@ -15,4 +15,5 @@ class MainPageLocators:
     WELCOME_TOUR_END = (By.ID, "welcome-tour-end")
     WELCOME_TOUR_TITLE = (By.XPATH, "//div[@class='welcome-tour-title popover-title']")
     TESING = (By.XPATH, "//div[contains(text(),'500100732259')]")
-    PRIVATE_EVENT = (By.CLASS_NAME, "calendar-event event-add")
+    PRIVATE_EVENT = (By.XPATH, "//div[@class='calendar-event event-add']")
+    EVENT_NAME = (By.XPATH, "//input[@name='event.name']")

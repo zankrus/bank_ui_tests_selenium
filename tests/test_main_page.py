@@ -1,5 +1,5 @@
 """Модуль тестов главной страницы."""
-
+import time
 import allure
 import pytest
 
@@ -49,4 +49,8 @@ class TestMainPage:
     @allure.title("Создания личного события с главной страницы")
     @allure.tag("positive")
     def test_add_and_delete_private_event(self, authorized_user):
+        authorized_user.open_main_page()
+        authorized_user.main_page.click_private_event_button()
+        authorized_user.main_page.input_event_name_field('ТЕСТ')
+        time.sleep(5)
         pass

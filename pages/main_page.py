@@ -120,7 +120,24 @@ class MainPage:
     def add_private_event_button(self):
         return self.app.wd.find_element(*MainPageLocators.PRIVATE_EVENT)
 
+    @allure.step("Кликаем на Добавить личное событие")
     def click_private_event_button(self):
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.PRIVATE_EVENT))
         logger.info("Видимость кнопки - Личное событие - "
                     + str(self.add_private_event_button().is_displayed())
                     )
+        return self.add_private_event_button().click()
+
+    def event_name_field(self):
+        return self.app.wd.find_element(*MainPageLocators.EVENT_NAME)
+
+    @allure.step("Вводим название личеного события - {keys}")
+    def input_event_name_field(self, keys):
+        self.wait.until(EC.element_to_be_clickable(MainPageLocators.EVENT_NAME))
+        logger.info("Видимость элемента - поле Название личного события - "
+                    + str(self.event_name_field().is_displayed())
+                    )
+        logger.info("Введенное значение - "
+                    + str(keys)
+                    )
+        return self.event_name_field().send_keys(keys)
