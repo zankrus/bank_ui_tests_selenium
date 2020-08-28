@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     """Класс для хранения локаторов главной страницы."""
+
     DEPOSITS = (By.XPATH, "//li[@id='deposits']")
     CHANGE_LANG = (By.XPATH, "//button[@class='btn btn-text btn-toggle active']")
     CARDS = (By.ID, "cards")
@@ -19,3 +20,5 @@ class MainPageLocators:
     EVENT_NAME = (By.XPATH, "//input[@name='event.name']")
     EVENT_NAME_DESCRIPTION = (By.XPATH, "//textarea[@name='event.description']")
     EVENT_NAME_SAVE_BUTTON = (By.XPATH, '//*[contains(text(),"Сохранить")]')
+    EVENT_DATE = (By.XPATH, "//input[@name='event.date']")
+    EVENT_ALERT = (By.CLASS_NAME, "error-message")

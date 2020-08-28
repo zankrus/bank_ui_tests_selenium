@@ -15,7 +15,7 @@ class FakeData:
         credit_card_expire_year: int = None,
         csv: int = None,
         text: str = None,
-        title: str = None
+        title: str = None,
     ) -> None:
         self.credit_card = credit_card
         self.name = name
@@ -39,5 +39,5 @@ class FakeData:
             credit_card_expire_year=fake.credit_card_expire()[3:] + "20",
             csv=fake.credit_card_security_code(),
             text=fake.text(max_nb_chars=999),
-            title=fake.sentence()
+            title=fake.sentence(),
         )

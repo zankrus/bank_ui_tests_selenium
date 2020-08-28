@@ -3,6 +3,7 @@ import allure
 
 from common.card_page_constants import CardPageConstants as Const
 
+
 @allure.suite("Операции с картами")
 class TestCards:
     """Класс тестов с Картами"""
@@ -57,9 +58,19 @@ class TestCards:
                """
         authorized_user.add_other_bank_card_page()
         authorized_user.card_page.other_bank_card_save_button_click()
-        assert authorized_user.card_page.text_empty_card_number_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
-        assert authorized_user.card_page.text_empty_card_expire_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
-        assert authorized_user.card_page.text_empty_card_csv_error() == Const.EMPTY_FIELD_ERROR_MESSAGE
-        assert authorized_user.card_page.text_not_correct_fields_error() == Const.NOT_CORRECT_FIELDS_ALERT
-
-
+        assert (
+            authorized_user.card_page.text_empty_card_number_error()
+            == Const.EMPTY_FIELD_ERROR_MESSAGE
+        )
+        assert (
+            authorized_user.card_page.text_empty_card_expire_error()
+            == Const.EMPTY_FIELD_ERROR_MESSAGE
+        )
+        assert (
+            authorized_user.card_page.text_empty_card_csv_error()
+            == Const.EMPTY_FIELD_ERROR_MESSAGE
+        )
+        assert (
+            authorized_user.card_page.text_not_correct_fields_error()
+            == Const.NOT_CORRECT_FIELDS_ALERT
+        )

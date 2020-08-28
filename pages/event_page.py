@@ -20,16 +20,21 @@ class EventPage:
 
     def event_by_title(self, text):
         try:
-            self.wait.until(EC.visibility_of_element_located(Loc.event_contains_text(text)))
+            self.wait.until(
+                EC.visibility_of_element_located(Loc.event_contains_text(text))
+            )
             return self.app.wd.find_element(*Loc.event_contains_text(text))
         except Exception:
             return False
 
     @allure.step("Выбираем в календаре события с названием - {text}")
     def open_event_by_title(self, text):
-        logger.info(f"Видимость элемента - Cобытие с заголовком -{text}  - "
-                    + str(self.app.wd.find_element(*Loc.event_contains_text(text)).is_displayed())
-                    )
+        logger.info(
+            f"Видимость элемента - Cобытие с заголовком -{text}  - "
+            + str(
+                self.app.wd.find_element(*Loc.event_contains_text(text)).is_displayed()
+            )
+        )
         self.wait.until(EC.visibility_of_element_located(Loc.event_contains_text(text)))
         return self.event_by_title(text).click()
 
@@ -38,9 +43,10 @@ class EventPage:
 
     @allure.step("Нажимаем Удалить ")
     def click_delete_event(self):
-        logger.info(f"Видимость элемента - Кнопка удалить  - "
-                    + str(self.delete_event_button().is_displayed()
-                          ))
+        logger.info(
+            "Видимость элемента - Кнопка удалить  - "
+            + str(self.delete_event_button().is_displayed())
+        )
         self.wait.until(EC.visibility_of_element_located(Loc.DELETE_EVENT_BUTTON))
         return self.delete_event_button().click()
 
@@ -50,9 +56,10 @@ class EventPage:
 
     @allure.step("Нажимаем ДА ")
     def click_confirm_button(self):
-        logger.info(f"Видимость элемента - Кнопка ДА  - "
-                    + str(self.confirm_delete_button().is_displayed()
-                          ))
+        logger.info(
+            "Видимость элемента - Кнопка ДА  - "
+            + str(self.confirm_delete_button().is_displayed())
+        )
         self.wait.until(EC.visibility_of_element_located(Loc.CONFIRM_DELETE_BUTTON))
         return self.confirm_delete_button().click()
 

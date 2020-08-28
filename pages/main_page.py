@@ -3,12 +3,14 @@ import logging
 from typing import Any
 
 import allure
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from locators.main_page_locators import MainPageLocators
+
+from common.main_page_constants import MainPageConstants as Const
 
 logger = logging.getLogger()
 
@@ -18,7 +20,7 @@ class MainPage:
 
     def __init__(self, app):
         self.app = app
-        self.wait = WebDriverWait(self.app.wd, 4)
+        self.wait = WebDriverWait(self.app.wd, 8)
 
     def deposits_button(self) -> WebElement:
         return self.app.wd.find_element(*MainPageLocators.DEPOSITS)
@@ -51,7 +53,9 @@ class MainPage:
         return self.logout_button().click()
 
     def question_button(self):
-        self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.QUESTION_BUTTON, '?'))
+        self.wait.until(
+            EC.text_to_be_present_in_element(MainPageLocators.QUESTION_BUTTON, "?")
+        )
         return self.app.wd.find_element(*MainPageLocators.QUESTION_BUTTON)
 
     @allure.step("Нажимаем кнопку - ВОПРОС")
@@ -75,7 +79,11 @@ class MainPage:
     @allure.step("Нажимаем кнопку - Далее")
     def click_welcome_tour_next_button(self):
         try:
-            self.wait.until(EC.presence_of_element_located(MainPageLocators.WELCOME_TOUR_NEXT_BUTTON))
+            self.wait.until(
+                EC.presence_of_element_located(
+                    MainPageLocators.WELCOME_TOUR_NEXT_BUTTON
+                )
+            )
             return self.welcome_tour_next_button().click()
         except StaleElementReferenceException:
             return self.welcome_tour_next_button().click()
@@ -97,12 +105,16 @@ class MainPage:
         return self.end_welcome_tour_button().click()
 
     def welcome_tour_title(self):
-        self.wait.until(EC.presence_of_element_located(MainPageLocators.WELCOME_TOUR_TITLE))
+        self.wait.until(
+            EC.presence_of_element_located(MainPageLocators.WELCOME_TOUR_TITLE)
+        )
         return self.app.wd.find_element(*MainPageLocators.WELCOME_TOUR_TITLE)
 
     @allure.step("Проверка текста заголовка Welcome Tour")
     def text_welcome_tour_title(self, text):
-        self.wait.until(EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text))
+        self.wait.until(
+            EC.text_to_be_present_in_element(MainPageLocators.WELCOME_TOUR_TITLE, text)
+        )
         return self.welcome_tour_title().text
 
     def account_number(self):
@@ -123,9 +135,10 @@ class MainPage:
     @allure.step("Кликаем на Добавить личное событие")
     def click_private_event_button(self):
         self.wait.until(EC.element_to_be_clickable(MainPageLocators.PRIVATE_EVENT))
-        logger.info("Видимость кнопки - Личное событие - "
-                    + str(self.add_private_event_button().is_displayed())
-                    )
+        logger.info(
+            "Видимость кнопки - Личное событие - "
+            + str(self.add_private_event_button().is_displayed())
+        )
         return self.add_private_event_button().click()
 
     def event_name_field(self):
@@ -134,12 +147,11 @@ class MainPage:
     @allure.step("Вводим название личного события - {keys}")
     def input_event_name_field(self, keys):
         self.wait.until(EC.element_to_be_clickable(MainPageLocators.EVENT_NAME))
-        logger.info("Видимость элемента - поле Название личного события - "
-                    + str(self.event_name_field().is_displayed())
-                    )
-        logger.info("Введенное значение - "
-                    + str(keys)
-                    )
+        logger.info(
+            "Видимость элемента - поле Название личного события - "
+            + str(self.event_name_field().is_displayed())
+        )
+        logger.info("Введенное значение - " + str(keys))
         return self.event_name_field().send_keys(keys)
 
     def event_description_field(self):
@@ -147,13 +159,14 @@ class MainPage:
 
     @allure.step("Вводим описание личного события - {keys}")
     def input_event_description_field(self, keys):
-        self.wait.until(EC.visibility_of_element_located(MainPageLocators.EVENT_NAME_DESCRIPTION))
-        logger.info("Видимость элемента - поле Описание личного события - "
-                    + str(self.event_description_field().is_displayed())
-                    )
-        logger.info("Введенное значение - "
-                    + str(keys)
-                    )
+        self.wait.until(
+            EC.visibility_of_element_located(MainPageLocators.EVENT_NAME_DESCRIPTION)
+        )
+        logger.info(
+            "Видимость элемента - поле Описание личного события - "
+            + str(self.event_description_field().is_displayed())
+        )
+        logger.info("Введенное значение - " + str(keys))
         return self.event_description_field().send_keys(keys)
 
     def event_save_button(self):
@@ -161,8 +174,39 @@ class MainPage:
 
     @allure.step("Нажимаем на кнопку Сохранить")
     def click_event_save_button(self):
-        logger.info("Видимость элемента - кнопка 'Сохранить' личного события - "
-                    + str(self.event_save_button().is_displayed())
-                    )
-        self.wait.until(EC.element_to_be_clickable(MainPageLocators.EVENT_NAME_SAVE_BUTTON))
+        logger.info(
+            "Видимость элемента - кнопка 'Сохранить' личного события - "
+            + str(self.event_save_button().is_displayed())
+        )
+        self.wait.until(
+            EC.element_to_be_clickable(MainPageLocators.EVENT_NAME_SAVE_BUTTON)
+        )
         return self.event_save_button().click()
+
+    @allure.step("Очистка поля Дата")
+    def clear_event_date_field(self):
+        self.wait.until(EC.visibility_of_element_located(MainPageLocators.EVENT_DATE))
+        logger.info(
+            "Видимость элемента - поле Дата - "
+            + str(self.app.wd.find_element(*MainPageLocators.EVENT_DATE).is_displayed())
+        )
+        return self.app.wd.find_element(*MainPageLocators.EVENT_DATE).clear()
+
+    def event_alert(self):
+        self.wait.until(EC.visibility_of_element_located(MainPageLocators.EVENT_ALERT))
+        return self.app.wd.find_element(*MainPageLocators.EVENT_ALERT)
+
+    @allure.step("Проверяем текст предупреждения ")
+    def text_of_event_alert(self):
+        logger.info(
+            "Видимость элемента - предупреждение об обязательном поле - "
+            + str(
+                self.app.wd.find_element(*MainPageLocators.EVENT_ALERT).is_displayed()
+            )
+        )
+        self.wait.until(
+            EC.text_to_be_present_in_element(
+                MainPageLocators.EVENT_ALERT, Const.EVENT_EMPTY_FIELD_ALERT
+            )
+        )
+        return self.event_alert().text

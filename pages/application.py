@@ -45,7 +45,6 @@ class Application:
         self.payment_page = PaymentPage(self)
         self.event_page = EventPage(self)
 
-
     @allure.step("Открытие страницы авторизации")
     def open_login_page(self) -> None:
         """Открытие страницы авторизации."""

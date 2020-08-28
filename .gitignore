@@ -8,6 +8,7 @@ __pycache__/
 failures
 .allure
 allure
+allure2
 env
 .env
 .idea

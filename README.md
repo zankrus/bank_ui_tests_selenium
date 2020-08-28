@@ -19,7 +19,7 @@ pip install -r requirements.txt
 1)Содайте и активируйте виртульное окружение
 
 ```bash
-pip install virtualenv 
+pip install virtualenv
 ```
 
 2)Активируйте вирутальное окружение

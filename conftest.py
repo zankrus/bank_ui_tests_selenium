@@ -36,6 +36,7 @@ def test_logger(request):
     yield
     logger.info(f"Конец теста - - {request.node.nodeid} \n")
 
+
 def pytest_addoption(parser):
     parser.addoption(
         "--base-url",

@@ -20,9 +20,10 @@ class PaymentPage:
 
     @allure.step("Нажатие кнопки Дальше")
     def click_next_button(self):
-        logger.info("Видимость элемента - кнопка Дальше - "
-                    + str(self.next_button().is_displayed())
-                    )
+        logger.info(
+            "Видимость элемента - кнопка Дальше - "
+            + str(self.next_button().is_displayed())
+        )
         return self.next_button().click()
 
     def error_alert(self):
@@ -30,8 +31,11 @@ class PaymentPage:
 
     @allure.step("Проверка текста предупреждения")
     def text_of_error_alert(self):
-        self.wait.until(EC.visibility_of_element_located(PaymentPageLocators.ERROR_MESSAGE))
-        logger.info("Видимость элемента - предупреждение 'В демо-версии переводы не разрешены' - "
-                    + str(self.error_alert().is_displayed())
-                    )
+        self.wait.until(
+            EC.visibility_of_element_located(PaymentPageLocators.ERROR_MESSAGE)
+        )
+        logger.info(
+            "Видимость элемента - предупреждение 'В демо-версии переводы не разрешены' - "
+            + str(self.error_alert().is_displayed())
+        )
         return self.error_alert().text

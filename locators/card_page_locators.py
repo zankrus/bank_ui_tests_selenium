@@ -17,8 +17,16 @@ class CardPageLocators:
     IFRAME = (By.XPATH, "//iframe[@id='confirmation-frame']")
     CONFIRM_BUTTON = (By.XPATH, "//button[@id='confirm']")
     SUCCESS_ALERT = (By.XPATH, "//div[@class='alert alert-success']")
-    NOT_CORRECT_FIELDS_ALERT = (By.XPATH , "//div[@class='alert alert-error hidden']")
-    CARD_NUMBER_ERROR_MESSAGE = (By.XPATH, "//div[@id='other-bank-card-number']//span[@class='error-message']")
-    CARD_EXPIRE_ERROR_MESSAGE = (By.XPATH, "//div[@id='other-bank-card-validity']//span[@class='error-message']")
-    CSV_CODE_ERROR_MESSAGE = (By.XPATH, "//div[@id='other-bank-card-cvv']//span[@class='error-message']")
-
+    NOT_CORRECT_FIELDS_ALERT = (By.XPATH, "//div[@class='alert alert-error hidden']")
+    CARD_NUMBER_ERROR_MESSAGE = (
+        By.XPATH,
+        "//div[@id='other-bank-card-number']//span[@class='error-message']",
+    )
+    CARD_EXPIRE_ERROR_MESSAGE = (
+        By.XPATH,
+        "//div[@id='other-bank-card-validity']//span[@class='error-message']",
+    )
+    CSV_CODE_ERROR_MESSAGE = (
+        By.XPATH,
+        "//div[@id='other-bank-card-cvv']//span[@class='error-message']",
+    )

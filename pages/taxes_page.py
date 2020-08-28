@@ -21,12 +21,17 @@ class TaxesPage:
 
     @allure.step("Кликаем на кнопку Проверить налоги")
     def click_on_check_taxes_button(self):
-        self.wait.until(EC.presence_of_element_located(TaxPageLocators.CHECK_TAXES_BUTTON))
+        self.wait.until(
+            EC.presence_of_element_located(TaxPageLocators.CHECK_TAXES_BUTTON)
+        )
         return self.check_taxes_button().click()
 
     def taxes_check_result_message(self):
-        self.wait.until(EC.text_to_be_present_in_element(TaxPageLocators.TAXES_CHECK_RESULT,
-                                                         Const.TAXES_CHECK_RESULT_TEXT))
+        self.wait.until(
+            EC.text_to_be_present_in_element(
+                TaxPageLocators.TAXES_CHECK_RESULT, Const.TAXES_CHECK_RESULT_TEXT
+            )
+        )
         return self.app.wd.find_element(*TaxPageLocators.TAXES_CHECK_RESULT)
 
     @allure.step("Проверка - Появились ли результаты из Гос.Инф.Системы")
@@ -40,4 +45,3 @@ class TaxesPage:
     @allure.step("Нажимаем оплатить")
     def click_pay_tax_button(self):
         return self.pay_tax_button().click()
-
