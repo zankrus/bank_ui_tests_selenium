@@ -38,6 +38,6 @@ class FakeData:
             credit_card_expire_mouth=fake.credit_card_expire()[0:2],
             credit_card_expire_year=fake.credit_card_expire()[3:] + "20",
             csv=fake.credit_card_security_code(),
-            text=fake.text(max_nb_chars=1000),
+            text=fake.text(max_nb_chars=999),
             title=fake.sentence()
         )

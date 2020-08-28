@@ -49,10 +49,20 @@ class TestMainPage:
     @allure.title("Создания личного события с главной страницы")
     @allure.tag("positive")
     def test_add_and_delete_private_event(self, authorized_user):
+        """
+           Шаги:
+               1) Перейти на главную страницу
+               2) Кликаем на иконку ФНС,под которой указан номер - 500100732259
+               3)
+        """
         authorized_user.open_main_page()
         authorized_user.main_page.click_private_event_button()
         authorized_user.main_page.input_event_name_field(authorized_user.fake_data.title)
         authorized_user.main_page.input_event_description_field(authorized_user.fake_data.text)
         authorized_user.main_page.click_event_save_button()
+        authorized_user.event_page.open_event_by_title(authorized_user.fake_data.title)
+        authorized_user.event_page.click_delete_event()
+        authorized_user.event_page.click_confirm_button()
         time.sleep(5)
-        pass
+        assert authorized_user.event_page.\
+            element_is_displayed(authorized_user.event_page.event_by_title(authorized_user.fake_data.title)) == False

@@ -12,6 +12,7 @@ from common.utilities import FakeData
 from common.loggin import setup
 from pages.card_page import CardPage
 from pages.deposits_page import DepositsPage
+from pages.event_page import EventPage
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.payment_page import PaymentPage
@@ -42,6 +43,7 @@ class Application:
         self.fake_data = FakeData.lets_random_bitchas()
         self.taxes_page = TaxesPage(self)
         self.payment_page = PaymentPage(self)
+        self.event_page = EventPage(self)
 
 
     @allure.step("Открытие страницы авторизации")
