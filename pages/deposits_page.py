@@ -1,4 +1,6 @@
 """Модуль страницы Депозиты."""
+import logging
+
 import allure
 from common.depost_page_constants import DepositPageConstants as Const
 
@@ -6,6 +8,7 @@ from locators.deposits_page_locators import DepositsPageLocators
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+logger = logging.getLogger()
 
 class DepositsPage:
     """Класс страницы Депозиты."""
@@ -19,6 +22,10 @@ class DepositsPage:
 
     @allure.step("Нажатие Открыть депозит")
     def click_open_deposit(self):
+        logger.info(
+            "Видимость кнопки - Открыть депозит - "
+            + str(self.open_deposit().is_displayed())
+        )
         return self.open_deposit().click()
 
     def usd_button(self):
@@ -26,6 +33,10 @@ class DepositsPage:
 
     @allure.step("Выбрать валюту - USD")
     def choose_usd(self):
+        logger.info(
+            "Видимость кнопки - USD - "
+            + str(self.usd_button().is_displayed())
+        )
         return self.usd_button().click()
 
     def free_term_button(self):
@@ -33,6 +44,10 @@ class DepositsPage:
 
     @allure.step("Выбрать Свободный срок")
     def choose_free_term(self):
+        logger.info(
+            "Видимость кнопки - Свободный срок - "
+            + str(self.free_term_button().is_displayed())
+        )
         return self.free_term_button().click()
 
     def demo_2_deposit(self):
@@ -40,6 +55,10 @@ class DepositsPage:
 
     @allure.step("Выбрать депозит ДЕМО2 ")
     def choose_demo_2_deposit(self):
+        logger.info(
+            "Видимость кнопки - Депозит Демо2 - "
+            + str(self.demo_2_deposit().is_displayed())
+        )
         return self.demo_2_deposit().click()
 
     def end_date(self):
@@ -56,6 +75,14 @@ class DepositsPage:
 
     @allure.step("Ввод суммы депозита")
     def input_to_amount_field(self, keys):
+        logger.info(
+            "Видимость поля - Сумма депозита - "
+            + str(self.amount_field().is_displayed())
+        )
+        logger.info(
+            "Введенная сумма депозита -  "
+            + str(keys)
+        )
         return self.amount_field().send_keys(keys)
 
     def next_button(self):
@@ -63,6 +90,10 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Далее")
     def click_next_button(self):
+        logger.info(
+            "Видимость элемента - Кнопка Далее - "
+            + str(self.next_button().is_displayed())
+        )
         return self.next_button().click()
 
     def agree_condition(self):
@@ -70,6 +101,10 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Согласен")
     def click_agree_condition(self):
+        logger.info(
+            "Видимость элемента - Кнопка Согласен - "
+            + str(self.agree_condition().is_displayed())
+        )
         return self.agree_condition().click()
 
     def confirm_button(self):
@@ -77,6 +112,10 @@ class DepositsPage:
 
     @allure.step("Нажатие кнопки Подтвердить")
     def click_confirm_button(self):
+        logger.info(
+            "Видимость элемента - Кнопка Подтвердить - "
+            + str(self.confirm_button().is_displayed())
+        )
         return self.confirm_button().click()
 
     def success_logo(self):

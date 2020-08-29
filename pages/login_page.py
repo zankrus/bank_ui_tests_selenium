@@ -1,4 +1,6 @@
 """Модуль страницы Авторизации."""
+import logging
+
 import allure
 
 from common.login_page_constants import LoginPageConstants as Const
@@ -6,6 +8,7 @@ from locators.login_page_locators import LoginPageLocators
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+logger = logging.getLogger()
 
 class LoginPage:
     """Класс страницы авторизации"""
@@ -25,16 +28,28 @@ class LoginPage:
 
     @allure.step('Нажать кнопку "Войти')
     def click_enter_button(self):
+        logger.info(
+            "Видимость элемента - Кнопка Войти - "
+            + str(self.enter_button().is_displayed())
+        )
         return self.enter_button().click()
 
     @allure.step("Ввод логина")
     def input_username(self, username):
         self.username_field().clear()
+        logger.info(
+            "Видимость элемента - Поле - username - "
+            + str(self.username_field().is_displayed())
+        )
         return self.username_field().send_keys(username)
 
     @allure.step("Ввод пароля")
     def input_password(self, password):
         self.password_field().clear()
+        logger.info(
+            "Видимость элемента - Поле - password - "
+            + str(self.password_field().is_displayed())
+        )
         return self.password_field().send_keys(password)
 
     def invalid_username_alert(self):
