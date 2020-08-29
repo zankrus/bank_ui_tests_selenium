@@ -5,7 +5,13 @@
 
 **URL -** https://idemo.bspb.ru/
 
-СТЭК - Selenium WebDriver + Pytest.
+СТЭК - Selenium WebDriver + Pytest + Allure
+
+## Задачи
+
+- Выбор стека
+- Выбор архитектуры
+- Покрытие проекта UI - тестами
 
 ## Установка
 

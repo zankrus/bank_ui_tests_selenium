@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 logger = logging.getLogger()
 
+
 class DepositsPage:
     """Класс страницы Депозиты."""
 
@@ -33,10 +34,7 @@ class DepositsPage:
 
     @allure.step("Выбрать валюту - USD")
     def choose_usd(self):
-        logger.info(
-            "Видимость кнопки - USD - "
-            + str(self.usd_button().is_displayed())
-        )
+        logger.info("Видимость кнопки - USD - " + str(self.usd_button().is_displayed()))
         return self.usd_button().click()
 
     def free_term_button(self):
@@ -79,10 +77,7 @@ class DepositsPage:
             "Видимость поля - Сумма депозита - "
             + str(self.amount_field().is_displayed())
         )
-        logger.info(
-            "Введенная сумма депозита -  "
-            + str(keys)
-        )
+        logger.info("Введенная сумма депозита -  " + str(keys))
         return self.amount_field().send_keys(keys)
 
     def next_button(self):

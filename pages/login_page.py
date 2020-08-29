@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 logger = logging.getLogger()
 
+
 class LoginPage:
     """Класс страницы авторизации"""
 
